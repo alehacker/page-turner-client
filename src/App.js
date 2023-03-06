@@ -34,6 +34,7 @@ function App() {
      
          <Route path='/signup' element={<SignUp />}></Route>
          <Route path='/login' element={<Login />}></Route>
+         {/* I'm not sure what Route should I create to display <BookDetails />  */}
 
       </Routes>
     </div>
