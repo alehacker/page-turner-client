@@ -10,7 +10,7 @@ const HomePage = () => {
             <div className="max-w-lg md:max-w-xl mb-5 md:mb-0">
                <img
                   className="w-full h-auto"
-                  src="../public/images/book-clubs-940x529.jpg"
+                  src="/images/book-clubs-940x529.jpg"
                   alt="Book Clubs"
                />
             </div>
@@ -22,7 +22,7 @@ const HomePage = () => {
                   Find, create and organize your bookclubs here!
                </p>
                <div>
-                  <button className="bg-green-700 hover:bg-green-500 text-white font-bold py-2 px-4 rounded mr-2">
+                  <button className="bg-green-700 hover:bg-green-500 text-white font-bold py-2 px-4 rounded mr-2 my-4">
                         Find Book Clubs
                   </button>
                   <button className="bg-green-700 hover:bg-green-500 text-white font-bold py-2 px-4 rounded">

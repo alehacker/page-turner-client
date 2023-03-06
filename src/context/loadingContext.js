@@ -1,5 +1,5 @@
 import { useState, createContext } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { get, post } from "../services/authService";
 import axios from "axios";
 import { API } from "../services/apiUrl";
@@ -26,10 +26,9 @@ const LoadingProvider = ({ children }) => {
    }
   
    const getBooks = (search) => {
-
       if (!books) {
          console.log("Calling API")
-         axios.get(API + search ) // This should be the link to search the books in the api - How am I supposed to grab the search"params)
+         axios.get(API + search )
          .then((response) => {
             setBooks(response.data)
          })
@@ -40,7 +39,7 @@ const LoadingProvider = ({ children }) => {
    }
 
    const noBooks = (bookId) => {
-      axios.get(API) // This should be the link to search the books in the api
+      axios.get(API)
       .then((response) => {
          let foundbooks = response.data
          setBooks(foundbooks)
@@ -53,7 +52,6 @@ const LoadingProvider = ({ children }) => {
    }
 
    const findBook = (bookId) => {
-
       if (!books) {
         noBooks(bookId)
       } else {
@@ -81,9 +79,29 @@ const LoadingProvider = ({ children }) => {
         console.log(err)
       })
   }
-//I need to finish this context, to find all the bookclubs and the bookdetails.
+
+  const getBookDetails = (bookId) => {
+    get(`/books/${bookId}/book-details`)
+      .then((results) => {
+        setBook(results.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  const getAllBookClubs = () => {
+    get('/bookclubs')
+      .then((results) => {
+        setBookClubs(results.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
    return (
-        <LoadingContext.Provider value={{ isLoading, message, setUser, user, setIsLoading, setMessage, setTimedMessage }}>
+        <LoadingContext.Provider value={{ isLoading, message, setUser, user, setIsLoading, setMessage, setTimedMessage, getBooks, findBook, getBookDetails, getBookClubs, getAllBookClubs, getBookClub }}>
           {children}
         </LoadingContext.Provider>
    );

@@ -32,7 +32,7 @@ function App() {
                      element={<CreateBookClub />}
                   ></Route>
                   <Route
-                     path="/add-book/:bookId"
+                     path="/bookclubs/:bookclubId"
                      element={<BookClubDetails />}
                   ></Route>{" "}
                   {/* Dobule check this is the right component to deal with adding a book */}
