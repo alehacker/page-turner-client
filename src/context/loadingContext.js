@@ -24,12 +24,12 @@ const LoadingProvider = ({ children }) => {
          setMessage('')
       }, 4000)
    }
-
-   const getBooks = () => {
+  
+   const getBooks = (search) => {
 
       if (!books) {
          console.log("Calling API")
-         axios.get(API + search ) // This should be the link to search the books in the api
+         axios.get(API + search ) // This should be the link to search the books in the api - How am I supposed to grab the search"params)
          .then((response) => {
             setBooks(response.data)
          })
@@ -83,7 +83,7 @@ const LoadingProvider = ({ children }) => {
   }
 //I need to finish this context, to find all the bookclubs and the bookdetails.
    return (
-        <LoadingContext.Provider value={{ countries, country, posts, post, isLoading, message, setUser, user, setPost, setPosts, setCountries, setCountry, setIsLoading, setMessage, setTimedMessage, getCountries, findCountry, getPosts, getPost }}>
+        <LoadingContext.Provider value={{ isLoading, message, setUser, user, setIsLoading, setMessage, setTimedMessage }}>
           {children}
         </LoadingContext.Provider>
    );

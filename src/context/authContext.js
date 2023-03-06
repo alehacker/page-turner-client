@@ -1,7 +1,7 @@
 import { useEffect, createContext, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { get } from "../services/authService"
-import { LoadingContext } from "./loading.context";
+import { LoadingContext } from "./loadingContext";
 
 const AuthContext = createContext();
 
