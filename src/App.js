@@ -22,6 +22,7 @@ function App() {
                <Routes>
                   <Route path="/" element={<HomePage />}></Route>
                   <Route path="/books" element={<SearchBook />}></Route>
+                  <Route path="/book-details/:bookId" element={<BookDetails />} />
                   <Route path="/bookclubs" element={<BookClubList />}></Route>
                   <Route
                      path="/edit-bookclub/:bookclubId/:userId"

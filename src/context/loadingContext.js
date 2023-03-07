@@ -25,17 +25,40 @@ const LoadingProvider = ({ children }) => {
       }, 4000)
    }
   
-   const getBooks = async (search) => {
-      if (!books) {
-        try {
-          const response = await axios.get(API + search);
-          console.log('response -->', response)
-          return response.data.items;
-        } catch (err) {
-          console.log(err);
-        }
-      }
+   const getBooks = (search) => {
+      // if (!books) {
+         axios.get(API + search)
+         .then((results) => {
+            // let newArray = [...books]
+            // books.push(results.data.items)
+            console.log("RESULTS", results.data.items)
+            setBooks(results.data.items)
+         })
+         .catch((err) => {
+            console.log(err)
+         })
+      //   try {
+      //     const response = await axios.get(API + search);
+      //     console.log('response -->', response)
+      //     setBooks(response)
+      //    //  return response.data.items;
+      //   } catch (err) {
+      // //     console.log(err);
+      // //   }
+      // }
     };
+   // const getBooks = async (search) => {
+   //    if (!books) {
+   //      try {
+   //        const response = await axios.get(API + search);
+   //        console.log('response -->', response)
+   //        setBooks(response)
+   //       //  return response.data.items;
+   //      } catch (err) {
+   //        console.log(err);
+   //      }
+   //    }
+   //  };
 
    const noBooks = (bookId) => {
       axios.get(API)
@@ -80,13 +103,30 @@ const LoadingProvider = ({ children }) => {
   }
 
   const getBookDetails = (bookId) => {
-    get(`/books/${bookId}/book-details`)
-      .then((results) => {
-        setBook(results.data)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+
+      axios.get(API + `/${bookId}`)
+         .then((results) => {
+            console.log("This is the found book:" , results.data.items[0])
+            setBook(results.data.items[0])
+         })
+         .catch((err) => {
+            console.log(err)
+         })
+
+      // if (!books) {
+
+      //    // get(`/books/${bookId}/book-details`)
+      //    //   .then((results) => {
+      //    //     setBook(results.data)
+      //    //   })
+      //    //   .catch((err) => {
+      //    //     console.log(err)
+      //    //   })
+      // } else {
+      //    let thisBook = books.find((book) => book.id === bookId)
+      //    console.log("This Book", thisBook)
+      //    setBook(thisBook)
+      // }
   }
 
   const getAllBookClubs = () => {
@@ -100,7 +140,7 @@ const LoadingProvider = ({ children }) => {
   }
 
    return (
-        <LoadingContext.Provider value={{ setBooks, bookClubs, isLoading, message, setUser, user, setIsLoading, setMessage, setTimedMessage, getBooks, findBook, getBookDetails, getBookClubs, getAllBookClubs, getBookClub }}>
+        <LoadingContext.Provider value={{ books, book, setBooks, setBook, bookClubs, bookClub, setBookClub, setBookClubs, isLoading, message, setUser, user, setIsLoading, setMessage, setTimedMessage, getBooks, findBook, getBookDetails, getBookClubs, getAllBookClubs, getBookClub }}>
           {children}
         </LoadingContext.Provider>
    );
