@@ -1,13 +1,14 @@
 import { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { AuthContext } from "../context/authContext"
+import { LoadingContext } from "../context/loadingContext"
 import { post } from "../services/authService"
 
 
 const Login = () => {
 
     const { authenticateUser } = useContext(AuthContext)
-
+    const { user, setUser } = useContext(LoadingContext)
     const [ thisUser, setthisUser ] = useState(
         {
             email: "",
@@ -28,38 +29,38 @@ const Login = () => {
         post('/auth/login', thisUser)
             .then((results) => {
                 console.log("Created User", results.data)
-                navigate(`/profile/${results.data._id}`)
                 localStorage.setItem('authToken', results.data.token )
-                
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-            .finally(() => {
-                authenticateUser()
+                setUser(results.data)
+               })
+               .catch((err) => {
+                  console.log(err)
+               })
+               .finally(() => {
+                  authenticateUser()
+                  navigate(`/profile/${user._id}`)
             })
     } 
 
     return (
-      <div className="flex flex-col md:flex-row justify-center items-center mt-10 w-full">
-            <div className="max-w-lg md:max-w-xl mb-5 md:mb-0">
+      <div className="flex flex-col items-center justify-center w-full mt-10 md:flex-row">
+            <div className="max-w-lg mb-5 md:max-w-xl md:mb-0">
                <img
                   className="w-full h-auto"
                   src="/images/peoplereading.jpg"
                   alt="Book Clubs"
                />
             </div>
-            <div className="md:ml-10 mt-5 md:mt-0 flex flex-col justify-between items-center space-y-4">
-               <h1 className="text-green-700 text-opacity-75 text-xl font-bold mb-2">Member Login </h1>
-               <form className="md:ml-10 mt-5 md:mt-0 flex flex-col justify-between" onSubmit={handleSubmit}>
+            <div className="flex flex-col items-center justify-between mt-5 space-y-4 md:ml-10 md:mt-0">
+               <h1 className="mb-2 text-xl font-bold text-green-700 text-opacity-75">Member Login </h1>
+               <form className="flex flex-col justify-between mt-5 md:ml-10 md:mt-0" onSubmit={handleSubmit}>
                   <label className="text-green-700 text-opacity-75">Email</label>
-                  <input type='email' name="email" value={thisUser.email} onChange={handleChange} className="border border-green-700 border-opacity-50 px-4 py-2"></input>
+                  <input type='email' name="email" value={thisUser.email} onChange={handleChange} className="px-4 py-2 border border-green-700 border-opacity-50"></input>
 
                   <label className="text-green-700 text-opacity-75">Password</label>
-                  <input type='password' name="password" value={thisUser.password} onChange={handleChange} className="border border-green-700 border-opacity-50 px-4 py-2" ></input>
+                  <input type='password' name="password" value={thisUser.password} onChange={handleChange} className="px-4 py-2 border border-green-700 border-opacity-50" ></input>
 
-                  <button className="bg-green-700 bg-opacity-75 hover:bg-green-500 text-white font-bold py-2 px-4 rounded mr-2 my-4" type="submit">Login</button>
-                  {/* <button className="bg-green-700 bg-opacity-75 hover:bg-green-500 text-white font-bold py-2 px-4 rounded mr-2 my-4" type="submit" >Sign Up</button> */}
+                  <button className="px-4 py-2 my-4 mr-2 font-bold text-white bg-green-700 bg-opacity-75 rounded hover:bg-green-500" type="submit">Login</button>
+                  {/* <button className="px-4 py-2 my-4 mr-2 font-bold text-white bg-green-700 bg-opacity-75 rounded hover:bg-green-500" type="submit" >Sign Up</button> */}
                </form>
             </div>
 

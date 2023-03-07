@@ -15,7 +15,7 @@ const LoadingProvider = ({ children }) => {
    const [ books, setBooks ] = useState(null);
    const [ book, setBook ] = useState(null);
 
-   const [ bookclubs, setBookClubs ] = useState([])
+   const [ bookClubs, setBookClubs ] = useState([])
    const [ bookClub, setBookClub ] = useState(null)
 
    const setTimedMessage = (newMessage) => {
@@ -25,18 +25,17 @@ const LoadingProvider = ({ children }) => {
       }, 4000)
    }
   
-   const getBooks = (search) => {
+   const getBooks = async (search) => {
       if (!books) {
-         console.log("Calling API")
-         axios.get(API + search )
-         .then((response) => {
-            setBooks(response.data)
-         })
-         .catch((err) => {
-            console.log(err)
-         })
+        try {
+          const response = await axios.get(API + search);
+          console.log('response -->', response)
+          return response.data.items;
+        } catch (err) {
+          console.log(err);
+        }
       }
-   }
+    };
 
    const noBooks = (bookId) => {
       axios.get(API)
@@ -101,7 +100,7 @@ const LoadingProvider = ({ children }) => {
   }
 
    return (
-        <LoadingContext.Provider value={{ isLoading, message, setUser, user, setIsLoading, setMessage, setTimedMessage, getBooks, findBook, getBookDetails, getBookClubs, getAllBookClubs, getBookClub }}>
+        <LoadingContext.Provider value={{ setBooks, bookClubs, isLoading, message, setUser, user, setIsLoading, setMessage, setTimedMessage, getBooks, findBook, getBookDetails, getBookClubs, getAllBookClubs, getBookClub }}>
           {children}
         </LoadingContext.Provider>
    );

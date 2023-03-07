@@ -5,7 +5,7 @@ import { post, get  } from "../services/authService";
 import { API } from "../services/apiUrl";
 
 function BookDetails (bookId) {
- const [ getBookDetails, getBooks] = useContext(LoadingProvider)
+ const { getBookDetails, getBooks } = useContext(LoadingProvider)
  
  const thisBook = getBookDetails(bookId)
 

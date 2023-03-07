@@ -7,20 +7,19 @@ import { API } from "../services/apiUrl";
 
 const BookClubList = () => {
    
-   const [getAllBookClubs] = useContext(LoadingProvider)
+   const { bookClubs} = useContext(LoadingContext)
 
-   const bookClubs = getAllBookClubs()
-   
-   
+ 
+
    return (
       <div>
-      <h1>Book Clubs</h1>
-      {bookClubs.map((bookClub) => (
-        <div key={bookClub.id}>
-          <h2>{bookClub.name}</h2>
-          <p>{bookClub.description}</p>
-        </div>
-      ))}
+         <h1>Book Clubs</h1>
+         {bookClubs.map((bookClub) => (
+         <div key={bookClub.id}>
+            <h2>{bookClub.name}</h2>
+            <p>{bookClub.description}</p>
+         </div>
+         ))}
     </div>
    )
 }
