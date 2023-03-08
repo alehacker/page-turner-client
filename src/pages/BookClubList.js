@@ -3,6 +3,7 @@ import { LoadingContext, LoadingProvider } from "../context/loadingContext";
 import { AuthContext } from "../context/authContext";
 import { post, get  } from "../services/authService";
 import { API } from "../services/apiUrl";
+import { Link } from "react-router-dom";
 
 
 const BookClubList = () => {
@@ -29,7 +30,10 @@ const BookClubList = () => {
                { 
                   bookClubs.map((bookClub) => (
                <div className="p-4 border border-gray-300 rounded-md" key={bookClub._id}>
-                  <h2 className="mb-2 text-2xl font-bold">{bookClub.name}</h2>
+               <Link to={`/bookclub-details/${bookClub._id}`} className="text-green-700 hover:text-green-500 focus:text-green-500" >
+                  <h2 className="mb-2 text-2xl font-bold">{bookClub.name}</h2>      
+               </Link>
+                 
                   <p className="text-green-700 text-opacity-75">{bookClub.description}</p> 
                </div>
                ))

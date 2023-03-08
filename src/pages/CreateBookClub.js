@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect} from "react";
 import { useNavigate } from "react-router-dom"
 import { LoadingContext } from "../context/loadingContext";
 import { AuthContext } from "../context/authContext";
@@ -10,7 +10,7 @@ const CreateBookClub = () => {
 
    const navigate = useNavigate()
    
-   const { bookClub, setBookClub, user, bookClubs, setBookClubs, setUser }   = useContext(LoadingContext)
+   const { bookClub, setBookClub, user, bookClubs, setBookClubs, setUser, getBookClubs }   = useContext(LoadingContext)
 
    const [ newBookClub, setNewBookClub ] = useState(
       {
@@ -38,7 +38,7 @@ const CreateBookClub = () => {
 
       post(`/bookclubs/create-bookclub/${user._id}`, newBookClub)
          .then((results) => {
-
+            console.log('results--->', results)
             if (!bookClubs) {
                navigate('/bookclubs') 
                return
@@ -47,12 +47,14 @@ const CreateBookClub = () => {
                let newBookClubs = [...bookClubs]
                newBookClubs.unshift(results.data)
                setBookClubs(newBookClubs)
-   
+               console.log('newbookclubs ==>', bookClubs)
+               
                let newUser = Object.assign({}, user)
                newUser.bookClubs.push(results.data)
+               console.log('here is the user with the new bookclub',newUser)
                setUser(newUser)
                
-               console.log(results.data)
+               console.log('the newBookClub -->', results.data)
                   
                navigate('/bookclubs') // I'm not sure where to navigate once the bookclub is created. Maybe the bookclub page
             }
@@ -64,6 +66,13 @@ const CreateBookClub = () => {
                console.log(err)
          })    
    } 
+   
+   // useEffect(() => {
+   //    if (!bookClubs){
+   //       getBookClubs()
+         
+   //    } 
+   // }, []);
 
    return (
       <div className="flex flex-col items-center justify-center w-full mt-10 md:flex-row">

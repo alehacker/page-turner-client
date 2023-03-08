@@ -28,6 +28,7 @@ function App() {
             <Navbar />
             <div className="w-full md:w-3/4 lg:w-1/2">
                <Routes>
+               
                   <Route path="/" element={<HomePage />}></Route>
                   <Route path="/books" element={<SearchBook />}></Route>
                   <Route path="/book-details/:bookId" element={<BookDetails />} />
@@ -36,35 +37,22 @@ function App() {
 
          
                   
-                     <Route
-                        path="/edit-bookclub/:bookclubId/:userId"
-                        element={<EditBookClubPage />}
-                     ></Route>
-                     <Route
-                        path="/create-bookclub/:userId"
-                        element={<CreateBookClub />}
-                     ></Route>
-                     <Route
-                        path="/bookclubs/:bookclubId"
-                        element={<BookClubDetails />}
-                     ></Route>{" "}
-                     {/* Dobule check this is the right component to deal with adding a book */}
-                     <Route
-                        path="/profile-edit/:userId"
-                        element={<EditProfilePage />}
-                     />
-                     <Route path="/profile/:userId" element={<UserProfile />} />
-                     <Route
-                        path="/other-profile/:userId"
-                        element={<OtherUserProfilePage />}
-                     />
+                  <Route path="/edit-bookclub/:bookclubId/:userId" element={<EditBookClubPage />} ></Route>
+                  <Route path="/create-bookclub/:userId" element={<CreateBookClub />}></Route>
                      
-              
-
-                
-                     <Route path="/signup" element={<SignUp />}></Route>
-                     <Route path="/login" element={<Login />}></Route>
-               
+                  <Route path="/bookclub-details/:bookclubId" element={<BookClubDetails />}></Route>
+                  <Route path="add-bookclub/:bookclubId/:userId" element={<BookClubDetails />}></Route>
+                  
+                  
+                  {/* Dobule check this is the right component to deal with adding a book */}
+                  <Route path="/profile-edit/:userId" element={<EditProfilePage />} />
+                  <Route path="/profile/:userId" element={<UserProfile />} />
+                  <Route path="/other-profile/:userId" element={<OtherUserProfilePage />} />
+                        
+                        
+                  <Route path="/signup" element={<SignUp />}></Route>
+                  <Route path="/login" element={<Login />}></Route>
+            
                   
                </Routes>
             </div>

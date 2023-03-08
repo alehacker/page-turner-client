@@ -10,8 +10,10 @@ const UserProfile = () => {
    const {user, setUser, books, setBooks, } = useContext(LoadingContext)
    
    console.log('here is the user -->', user)
+   console.log('The whole Users collection', user.bookCollection)
    
-
+   let bookclubId
+   
   return (
    <div className="max-w-2xl mx-auto mt-5">
       {user && (
@@ -34,10 +36,16 @@ const UserProfile = () => {
                <div className="mb-4">
                   <h2 className="mb-2 text-lg font-bold text-green-700 text-opacity-75 ">Book Clubs I Belong</h2>
                   <ul>
-                  { user.bookClubs? user.bookClubs.map((club) => (
-                     <li key={club.id}>{club.name}</li>
-                  )): <p>no book clubs yet</p>}
+                  
+                  {
+                     user.bookClubs? user.bookClubs.map((club) => (
+                     <Link to={`/bookclub-details/${club.id}`} className="text-green-700 hover:text-green-500 focus:text-green-500" >
+                        <li className="mb-2 text-l" key={club.id}>{club.name}</li>    
+                     </Link> //***this link is not working***  The problem might be the club.id not 'translating' into the bookclubId used on that route//
+                     
+                  )): <p className="mb-2">no book clubs yet</p>}
                   </ul>
+
                </div>
                <div>
                   <h2 className="mb-2 text-lg font-bold text-green-700 text-opacity-75 ">Books I Like</h2>
@@ -50,7 +58,7 @@ const UserProfile = () => {
                         <p className="mb-2">{book.pages} pages</p>
                         <p className="mb-2">Published: {book.publishedDate}</p>
                         </li>
-                     )) : <p>no book Collection yet</p>}
+                     )) : <p className="mb-2">no book Collection yet</p>}
                   </ul>
                </div>
 

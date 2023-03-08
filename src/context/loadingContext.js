@@ -85,6 +85,7 @@ const LoadingProvider = ({ children }) => {
   const getBookClubs = () => {
     get('/bookclubs')
     .then((results) => {
+      console.log('all bookclubs', results.data)
       setBookClubs(results.data)
     })
     .catch((err) => {
@@ -92,9 +93,10 @@ const LoadingProvider = ({ children }) => {
     })
   }
 
-  const getBookClub = (_id) => {
-    get(`/bookclubs/bookclub-detail/${_id}`)
+  const getBookClub = (id) => {
+    get(`/bookclubs/bookclub-details/${id}`)
       .then((results) => {
+         console.log('the bookclub -->', results.data)
         setBookClub(results.data)
       })
       .catch((err) => {
@@ -138,6 +140,8 @@ const LoadingProvider = ({ children }) => {
         console.log(err)
       })
   }
+
+  
 
    return (
         <LoadingContext.Provider value={{ books, book, setBooks, setBook, bookClubs, bookClub, setBookClub, setBookClubs, isLoading, message, setUser, user, setIsLoading, setMessage, setTimedMessage, getBooks, findBook, getBookDetails, getBookClubs, getAllBookClubs, getBookClub }}>
