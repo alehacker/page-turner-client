@@ -9,7 +9,7 @@ import { API } from "../services/apiUrl";
 function BookDetails () {
 const navigate = useNavigate()
  const { authenticateUser } = useContext(AuthContext)
- const { getBookDetails, getBooks, book, user, findBook} = useContext(LoadingContext)
+ const { getBookDetails, getBooks, book, user, findBook, setUser } = useContext(LoadingContext)
 
  const { bookId } = useParams()
 
@@ -17,7 +17,9 @@ const navigate = useNavigate()
    e.preventDefault()
    post(`/books/add-book/${bookId}`, book)
    .then((response) =>{
+      setUser(response.data)
       console.log('Here is the new bookCollection', response.data)
+      navigate(`/profile/${user._id}`)
    })
    .catch((err) =>{
       console.log(err)

@@ -31,13 +31,13 @@ const Login = () => {
                 console.log("Created User", results.data)
                 localStorage.setItem('authToken', results.data.token )
                 setUser(results.data)
+                navigate(`/profile/${results.data.foundUser._id}`)
                })
                .catch((err) => {
-                  console.log(err)
+                  console.log("we have an error", err)
                })
                .finally(() => {
                   authenticateUser()
-                  navigate(`/profile/${user._id}`)
             })
     } 
 
@@ -60,7 +60,7 @@ const Login = () => {
                   <input type='password' name="password" value={thisUser.password} onChange={handleChange} className="px-4 py-2 border border-green-700 border-opacity-50" ></input>
 
                   <button className="px-4 py-2 my-4 mr-2 font-bold text-white bg-green-700 bg-opacity-75 rounded hover:bg-green-500" type="submit">Login</button>
-                  {/* <button className="px-4 py-2 my-4 mr-2 font-bold text-white bg-green-700 bg-opacity-75 rounded hover:bg-green-500" type="submit" >Sign Up</button> */}
+                 
                </form>
             </div>
 

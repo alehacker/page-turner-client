@@ -15,7 +15,7 @@ const LoadingProvider = ({ children }) => {
    const [ books, setBooks ] = useState(null);
    const [ book, setBook ] = useState(null);
 
-   const [ bookClubs, setBookClubs ] = useState([])
+   const [ bookClubs, setBookClubs ] = useState(null)
    const [ bookClub, setBookClub ] = useState(null)
 
    const setTimedMessage = (newMessage) => {
