@@ -9,11 +9,10 @@ import { LoadingContext } from '../context/loadingContext';
 const Navbar = () => {
    const { logout } = useContext(AuthContext)
 
-   const { user } = useContext(LoadingContext) 
+   const { user  } = useContext(LoadingContext) 
 
-   const getToken = () => {
-      return localStorage.getItem("authToken")
-   }
+   
+      let token = localStorage.getItem("authToken")
    
 
  
@@ -39,15 +38,29 @@ const Navbar = () => {
 
                <div className='flex items-end justify-between h-16'> 
                   <div className="flex items-center flex-shrink-0 ml-auto">
+                   { token && (
+                     <>
+                     <Link to={'/profile/:userId'}className="mr-4 text-green-700 text-opacity-75">  
+                     <UserCircleIcon className="w-6 h-6 mr-2 text-green-700 text-opacity-75" />Profile
+                     </Link>
+                     <button className="px-4 py-2 my-4 mr-2 font-bold text-white bg-green-700 bg-opacity-75 rounded hover:bg-green-500" onClick={logout}>Logout</button>
+                        
+                     </>
+                   )}
+
+                   { !token && (
+                     <>
                      <Link to={'/signup'} className= "mr-4 text-green-700 text-opacity-75"> 
                      <UserPlusIcon className="w-6 h-6 mr-2 text-green-700 text-opacity-75" />Sign Up
                      </Link>
                      <Link to={'/login'}className="mr-4 text-green-700 text-opacity-75">  
                      <UserIcon className="w-6 h-6 mr-2 text-green-700 text-opacity-75" />Login
                      </Link>
-                     <Link to={'/profile/:userId'}className="mr-4 text-green-700 text-opacity-75">  
-                     <UserCircleIcon className="w-6 h-6 mr-2 text-green-700 text-opacity-75" />Profile
-                     </Link>
+                     </>
+                  )}
+                     
+                     
+                     
                   </div>
                </div>
 
@@ -77,7 +90,7 @@ export default Navbar;
 
 
 
-// { getToken() ?
+// { token &&
 //    <div className='flex items-end justify-between h-16'>
 
 //       <div className="flex items-center flex-shrink-0 ml-auto">
@@ -89,8 +102,8 @@ export default Navbar;
 //             <button className="px-4 py-2 my-4 mr-2 font-bold text-white bg-green-700 bg-opacity-75 rounded hover:bg-green-500" onClick={logout}>Logout</button>
 //       </div>
 //    </div> 
-// :
-
+// }
+// {  !token &&
 //    <div className='flex items-end justify-between h-16'> 
 //          <div className="flex items-center flex-shrink-0 ml-auto">
 
