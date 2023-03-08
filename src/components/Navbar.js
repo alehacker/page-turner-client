@@ -29,7 +29,7 @@ const Navbar = () => {
                   </Link>
                   <div className="hidden sm:flex sm:items-baseline sm:ml-4 sm:space-x-4">
                      <Link to={'/bookclubs'} className="px-3 py-2 text-sm font-medium text-green-700 rounded-md font-large hover:text-green-500">
-                        Join a Book Club
+                        Check All Book Clubs
                      </Link>
                      <Link to={'/books'} className="px-3 py-2 text-sm font-medium text-green-700 rounded-md font-large hover:text-green-500">
                         Find a Book

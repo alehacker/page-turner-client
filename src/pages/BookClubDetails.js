@@ -8,7 +8,7 @@ import { API } from "../services/apiUrl";
 import { Link } from "react-router-dom";
 
 
-function BookClubDetails() {
+function BookClubDetails ({ title }) {
    const navigate = useNavigate()
    const { authenticateUser } = useContext(AuthContext)
    const { bookClub, setBookClub,  user,  setUser, getBookClub } = useContext(LoadingContext)
@@ -29,7 +29,7 @@ function BookClubDetails() {
       
   return (
    <div className="p-4 mt-5 text-green-700 text-opacity-75 bg-white rounded-lg shadow-lg">
-      <h1  className="mb-2 text-2xl font-bold">Book Club Details</h1>
+      <h1  className="mb-2 text-2xl font-bold">{title}</h1>
       {
          bookClub ?
          <> 
@@ -58,17 +58,30 @@ function BookClubDetails() {
                   </ul>
                </div>
          
-               
+               {
+                  bookClub && 
+                  <>
+
+                  {
+                  user ? 
+
                <Link to={`/add-bookclub/${bookClub._id}/${user._id}`} className="text-green-700 hover:text-green-500 focus:text-green-500" >
                   <button className="px-4 py-2 my-4 mr-2 font-bold text-white bg-green-700 bg-opacity-75 rounded hover:bg-green-500" type="submit">Join Book Club</button>      
                </Link>
+
+               : <h4>Loading...</h4>
+                  }
+                     
+                  </>
+                  
+               }
                                   
                { 
                   user && (checkCreator(bookClub.creator._id, user._id)) && <Link to={`/edit-bookclub/${bookClub._id}/${user._id}`} className="text-green-700 hover:text-green-500 focus:text-green-500" >
                      <button className="px-4 py-2 my-4 mr-2 font-bold text-white bg-green-700 bg-opacity-75 rounded hover:bg-green-500" type="submit">Edit Book Club</button>      
                      </Link>
                }                    
-                 { user && (checkCreator(bookClub.creator._id, user._id)) && <Link to={`/edit-bookclub/${bookClub._id}/${user._id}`} className="text-green-700 hover:text-green-500 focus:text-green-500" >
+                 { user && (checkCreator(bookClub.creator._id, user._id)) && <Link to={`/delete-bookclub/${bookClub._id}/${user._id}`} className="text-green-700 hover:text-green-500 focus:text-green-500" >
                      <button className="px-4 py-2 my-4 mr-2 font-bold text-white bg-green-700 bg-opacity-75 rounded hover:bg-green-500" type="submit">Delete Book Club</button>      
                      </Link>
                }
