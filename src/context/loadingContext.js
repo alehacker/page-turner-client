@@ -86,6 +86,20 @@ const LoadingProvider = ({ children }) => {
           console.log('Error Deleting BookClub', err);
         });
    };
+  
+   const onJoinClick = (bookclubId) =>{
+      console.log(" ---> User Joining Club", user)
+      get(`/bookclubs/add-bookclub/${bookclubId}/${user._id}`)
+      .then((response) =>{
+         console.log('This USER joined a club', response.data)
+         setUser(response.data)
+         navigate(`/profile/${user._id}`)
+      })
+      .catch((err) =>{
+         console.log(err)
+      })
+
+   }
    
 
    const noBooks = (bookId) => {
@@ -173,7 +187,7 @@ const LoadingProvider = ({ children }) => {
   
 
    return (
-      <LoadingContext.Provider value={ {onDeleteClick,  books, book, setBooks, setBook, bookClubs, bookClub, setBookClub, setBookClubs, isLoading, message, setUser, user, setIsLoading, setMessage, setTimedMessage, getBooks, findBook, getBookDetails, getBookClubs, getAllBookClubs, getBookClub }}>
+      <LoadingContext.Provider value={ {onJoinClick, onDeleteClick,  books, book, setBooks, setBook, bookClubs, bookClub, setBookClub, setBookClubs, isLoading, message, setUser, user, setIsLoading, setMessage, setTimedMessage, getBooks, findBook, getBookDetails, getBookClubs, getAllBookClubs, getBookClub }}>
          {children}
       </LoadingContext.Provider>
    );

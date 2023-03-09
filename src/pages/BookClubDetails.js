@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 function BookClubDetails ({ title }) {
    const navigate = useNavigate()
    const { authenticateUser } = useContext(AuthContext)
-   const { bookClub, setBookClub,  user,  setUser, getBookClub, onDeleteClick } = useContext(LoadingContext)
+   const { bookClub, setBookClub,  user,  setUser, getBookClub, onDeleteClick, onJoinClick } = useContext(LoadingContext)
 
    const { bookclubId } = useParams()
 
@@ -67,9 +67,8 @@ function BookClubDetails ({ title }) {
                   {
                   user ? 
 
-               <Link to={`/add-bookclub/${bookClub._id}/${user._id}`} className="text-green-700 hover:text-green-500 focus:text-green-500" >
-                  <button className="px-4 py-2 my-4 mr-2 font-bold text-white bg-green-700 bg-opacity-75 rounded hover:bg-green-500" type="submit">Join Book Club</button>      
-               </Link>
+                     <button className="px-4 py-2 my-4 mr-2 font-bold text-white bg-green-700 bg-opacity-75 rounded hover:bg-green-500" onClick={() =>{onJoinClick(bookClub._id)}}>Join Book Club</button>      
+              
 
                : <h4>Loading...</h4>
                   }
