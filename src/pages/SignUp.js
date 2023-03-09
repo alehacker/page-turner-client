@@ -23,7 +23,7 @@ const SignUp = () => {
        lastName: "",
        email: "",
        password: "",
-       profileImage: profileImage,
+       profileImage: "",
       }
    )
    
@@ -46,26 +46,7 @@ const SignUp = () => {
          })    
    } 
    
-   const handleFileUpload = (e) => {
-      setIsUploading(true); // set isUploading to true
-      console.log("Uploading photo...")
-      const uploadData = new FormData()
-      uploadData.append('profileImage', e.target.files[0])
-      console.log("FILE LIST", e.target.files.length)
-      if (e.target.files.length){
-         post('/auth/new-profile-photo', uploadData)
-           .then((result) => {
-             setProfileImage(result.data.profileImage)
-             console.log("This is photo", result.data)
-           })
-           .catch((err) => {
-             console.log("Upload error", err)
-           })
-           .finally(() => {
-             setIsUploading(false); // set isUploading to false after the upload is complete
-           });
-       }
-   }
+   
 
    return (
       <div className="flex flex-col items-center justify-center w-full mt-10 md:flex-row">
@@ -96,12 +77,10 @@ const SignUp = () => {
                      
                      <label className="text-green-700 text-opacity-75">Profile Image</label>
                      <input type='file' name="profileImage"  
-                     //  onChange={(e) => handleFileUpload(e)} 
+                     
                         
                       accept=".jpg, .jpeg, .png, .pdf" className="px-4 py-2 border border-green-700 border-opacity-50"></input>
-                     {/* { isUploading ? (
-                        <p>Uploading photo...</p>
-                        ) : ( */}
+                    
                      <button className="px-4 py-2 my-4 mr-2 font-bold text-white bg-green-700 bg-opacity-75 rounded hover:bg-green-500" type="submit"  >Sign Up</button> 
                   </form>
             </div>
@@ -143,3 +122,28 @@ export default SignUp
 //             // onChange={(e) => setProfileImage(e.target.value)}
 //              />
 //           </label>
+
+//  { isUploading ? (<p>Uploading photo...</p> ) 
+//  : ( */}
+///  onChange={(e) => handleFileUpload(e)} 
+
+// const handleFileUpload = (e) => {
+//    setIsUploading(true); // set isUploading to true
+//    console.log("Uploading photo...")
+//    const uploadData = new FormData()
+//    uploadData.append('profileImage', e.target.files[0])
+//    console.log("FILE LIST", e.target.files.length)
+//    if (e.target.files.length){
+//       post('/auth/new-profile-photo', uploadData)
+//         .then((result) => {
+//           setProfileImage(result.data.profileImage)
+//           console.log("This is photo", result.data)
+//         })
+//         .catch((err) => {
+//           console.log("Upload error", err)
+//         })
+//         .finally(() => {
+//           setIsUploading(false); // set isUploading to false after the upload is complete
+//         });
+//     }
+// }
