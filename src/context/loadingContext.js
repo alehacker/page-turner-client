@@ -18,6 +18,8 @@ const LoadingProvider = ({ children }) => {
    const [ bookClubs, setBookClubs ] = useState(null)
    const [ bookClub, setBookClub ] = useState(null)
 
+   const navigate = useNavigate()
+
    const setTimedMessage = (newMessage) => {
       setMessage(newMessage);
       setTimeout(() => {
@@ -67,6 +69,7 @@ const LoadingProvider = ({ children }) => {
          let index = bookClubs.indexOf(response.data)
          let newBookClubs = bookClubs.splice(index, 1)
          setBookClubs(newBookClubs)
+         navigate(`/profile/${user._id}`)
         })
         .catch((err) => {
           console.log('Error Deleting BookClub');
