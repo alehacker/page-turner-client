@@ -63,6 +63,8 @@ const LoadingProvider = ({ children }) => {
    //  };  /delete-bookclub/:bookclubId/:userId
 
    const onDeleteClick = (bookclubId) => {
+      console.log("Deleting")
+      console.log("User deleting", user)
       get(`/bookClubs/delete-bookclub/${bookclubId}/${user.id}`)
         .then((response) => {
          console.log('deleted bookclub', response.data)
@@ -72,7 +74,7 @@ const LoadingProvider = ({ children }) => {
          navigate(`/profile/${user._id}`)
         })
         .catch((err) => {
-          console.log('Error Deleting BookClub');
+          console.log('Error Deleting BookClub', err);
         });
    };
    

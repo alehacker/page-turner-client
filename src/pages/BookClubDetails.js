@@ -85,7 +85,7 @@ function BookClubDetails ({ title }) {
                }                    
                  { user && (checkCreator(bookClub.creator._id, user._id)) && 
                  
-                     <button className="px-4 py-2 my-4 mr-2 font-bold text-white bg-green-700 bg-opacity-75 rounded hover:bg-green-500" type="submit" onClick={() =>{onDeleteClick(bookClub._id)}}>Delete Book Club</button>      
+                     <button className="px-4 py-2 my-4 mr-2 font-bold text-white bg-green-700 bg-opacity-75 rounded hover:bg-green-500" onClick={() =>{onDeleteClick(bookClub._id)}}>Delete Book Club</button>      
                      
                }
          </>
