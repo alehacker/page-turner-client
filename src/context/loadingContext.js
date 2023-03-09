@@ -62,19 +62,25 @@ const LoadingProvider = ({ children }) => {
    //    }
    //  };  /delete-bookclub/:bookclubId/:userId
 
+   const getIndex = (array, thisId) => {
+      return array.findIndex((element) => element._id === thisId) 
+  }
+
    const onDeleteClick = (bookclubId) => {
       console.log("User deleting", user)
       get(`/bookclubs/delete-bookclub/${bookclubId}/${user._id}`)
         .then((response) => {
+         let newClubs = [...bookClubs]
+         newClubs.splice(getIndex(newClubs, bookclubId), 1)
          console.log('deleted bookclub', response.data)
-         let index = bookClubs.indexOf(response.data)
-         let newBookClubs = bookClubs.splice(index, 1)
-         setBookClubs(newBookClubs)
-         navigate(`/profile/${user._id}`)
+         // let index = bookClubs.indexOf(response.data)
+         // let newBookClubs = bookClubs.splice(index, 1)
+         setBookClubs(newClubs)
          let updatedUser = Object.assign({}, user)
-
+         
          updatedUser.bookClubs = updatedUser.bookClubs.filter((club) => club._id !== response.data._id)
          setUser(updatedUser)
+         navigate(`/profile/${user._id}`)
         })
         .catch((err) => {
           console.log('Error Deleting BookClub', err);
