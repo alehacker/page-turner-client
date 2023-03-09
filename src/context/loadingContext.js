@@ -61,7 +61,7 @@ const LoadingProvider = ({ children }) => {
    //  };  /delete-bookclub/:bookclubId/:userId
 
    const onDeleteClick = (bookclubId) => {
-      get(`/bookclubs/delete-bookclub/${bookclubId}/${user.id}`)
+      get(`/bookClubs/delete-bookclub/${bookclubId}/${user.id}`)
         .then((response) => {
          console.log('deleted bookclub', response.data)
          let index = bookClubs.indexOf(response.data)

@@ -25,19 +25,6 @@ function EditProfilePage() {
       }) 
    }
 
-   // const handleSubmit = (e) =>{
-   //    e.preventDefault()
-   //    post(`/bookclubs/edit-bookclub/${bookclubId}/${userId}`, bookClub)
-   //    .then((results)=>{
-   //       console.log('results--->', results)
-   //       setBookClub(results.data)
-   //       navigate(`/bookclub-details/${bookclubId}`)
-   //    })
-   //    .catch((err) =>{
-   //       console.log(err)
-   //    }) 
-   // }
-
  
    return (
       <div className="flex flex-col items-center justify-center w-full mt-10 md:flex-row">
