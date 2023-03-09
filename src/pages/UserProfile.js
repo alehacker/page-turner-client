@@ -8,19 +8,19 @@ import { useNavigate } from "react-router-dom"
 
 
 const UserProfile = () => {
-   const {user, setUser, books, setBooks,bookclub, setBookClub, getBookDetails } = useContext(LoadingContext)
+   const {user, setUser, books, setBooks,bookclub, setBookClub, getMongoBookDetails } = useContext(LoadingContext)
    
    const navigate = useNavigate()
 
-   // const handleBookClick = (bookId) =>{
-   //    getBookDetails(bookId)
-   //    .then((results) =>{
-   //       navigate(`/book-details/${results.data._id}`)
-   //    })
-   //    .catch((err) =>{
-   //       console.log('Error on getting BookDetails', err)
-   //    })
-   // }
+   const handleBookClick = (bookId) =>{
+      getMongoBookDetails(bookId)
+      .then((results) =>{
+         navigate(`/book-details/${results.data._id}`)
+      })
+      .catch((err) =>{
+         console.log('Error on getting BookDetails', err)
+      })
+   }
    
    console.log('here is the user -->', user)
    // console.log('The whole Users collection', user.bookCollection)
@@ -65,7 +65,7 @@ const UserProfile = () => {
                         <img src={book.bookImg} alt={book.title}  className="object-contain w-full h-48" /> 
                         <Link 
                         // to={`/book-details/${book._id}`} 
-                        onClick= {()=>{getBookDetails(book._id)}}>               
+                        onClick= {()=>{handleBookClick(book._id)}}>               
                            <h3  className="mb-2 text-lg font-bold">{book.title}</h3> 
                         </Link>                                    
                         <p className="mb-2">{book.author}</p>

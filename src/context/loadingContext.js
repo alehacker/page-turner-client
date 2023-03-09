@@ -161,6 +161,16 @@ const LoadingProvider = ({ children }) => {
 
   }
 
+  const getMongoBookDetails = (bookId) =>{
+   get(`/books//book-details/${bookId}`)
+      .then((results) =>{
+         setBook(results.data)
+      })
+      .catch((err) => {
+         console.log(err)
+       })
+  }
+
   const getAllBookClubs = () => {
     get('/bookclubs')
       .then((results) => {
@@ -175,7 +185,7 @@ const LoadingProvider = ({ children }) => {
   
 
    return (
-      <LoadingContext.Provider value={ {onJoinClick, onDeleteClick,  books, book, setBooks, setBook, bookClubs, bookClub, setBookClub, setBookClubs, isLoading, message, setUser, user, setIsLoading, setMessage, setTimedMessage, getBooks, findBook, getBookDetails, getBookClubs, getAllBookClubs, getBookClub }}>
+      <LoadingContext.Provider value={ {getMongoBookDetails, onJoinClick, onDeleteClick,  books, book, setBooks, setBook, bookClubs, bookClub, setBookClub, setBookClubs, isLoading, message, setUser, user, setIsLoading, setMessage, setTimedMessage, getBooks, findBook, getBookDetails, getBookClubs, getAllBookClubs, getBookClub }}>
          {children}
       </LoadingContext.Provider>
    );
