@@ -37,7 +37,7 @@ function BookClubDetails ({ title }) {
          <> 
             <h2  className="mb-2 text-lg font-semibold">{bookClub.name}</h2>
             {bookClub.clubImg ? 
-                     <img src={bookClub.clubImg} alt="Club Photo" className="w-48 h-auto mb-2"/>
+                     <img src={bookClub.clubImg} alt="Club" className="w-48 h-auto mb-2"/>
                : <p className="mb-2">Image not available</p>
             }
             <p className="mb-1">Description: {bookClub.description}</p>

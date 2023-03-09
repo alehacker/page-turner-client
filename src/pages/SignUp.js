@@ -11,99 +11,35 @@ const SignUp = () => {
    const [isUploading, setIsUploading] = useState(false);
    const navigate = useNavigate();
    
-   const [newUser, setNewUser] = useState({
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-   });
+
+   const [ newUser, setNewUser ] = useState(
+      {
+       firstName: "",
+       lastName: "",
+       email: "",
+       password: "",
+       profileImage: "",
+      }
+   )
    
    const handleChange = (e) => {
-      setNewUser((prevState) => ({
-         ...prevState,
-         [e.target.name]: e.target.value,
-      }));
-   };
-   
-   const handleFileUpload = async (e) => {
-      const file = e.target.files[0];
-      setProfileImage(file);
-   };
-   
-   const handleSubmit = async (e) => {
-      e.preventDefault();
-   
-      if (!profileImage) {
-         console.log("Please select an image to upload.");
-         return;
-      }
-   
-      setIsUploading(true);
-   
-      try {
-         const formData = new FormData();
-         formData.append("profileImage", profileImage);
-         formData.append("firstName", newUser.firstName);
-         formData.append("lastName", newUser.lastName);
-         formData.append("email", newUser.email);
-         formData.append("password", newUser.password);
-   
-         const response = await post("/auth/signup", formData, {
-         headers: {
-            "Content-Type": "multipart/form-data",
-         },
-         });
-   
-         console.log("Created User", response.data);
-         navigate(`/profile/${response.data._id}`);
-         localStorage.setItem("authToken", response.data.token);
-         authenticateUser();
-      } catch (error) {
-         console.log(error);
-      } finally {
-         setIsUploading(false);
-      }
-   };
+      setNewUser((recent)=>({...recent, [e.target.name]: e.target.value}))
+      console.log("Changing user", newUser)
+   }
 
-   // const { authenticateUser } = useContext(AuthContext)
-   
-   // const [profileImage, setProfileImage] = useState('');
-
-   // const [isUploading, setIsUploading] = useState(false); // new state variable
-
-   
-   // const navigate = useNavigate()
-   
-  
-   
-   // const [ newUser, setNewUser ] = useState(
-   //    {
-   //     firstName: "",
-   //     lastName: "",
-   //     email: "",
-   //     password: "",
-   //     profileImage: "",
-   //    }
-   // )
-   
-   // const handleChange = (e) => {
-   //    setNewUser((recent)=>({...recent, [e.target.name]: e.target.value}))
-   //    console.log("Changing user", newUser)
-   // }
-
-   // const handleSubmit = (e) => {
-   //    e.preventDefault()
-   //    post('/auth/signup', newUser)
-   //       .then((results) => {
-   //          console.log("Created User", results.data)
-   //          navigate(`/profile/${results.data._id}`)
-   //          localStorage.setItem('authToken', results.data.token )
-   //          authenticateUser()
-   //       })
-   //       .catch((err) => {
-   //             console.log(err)
-   //       })    
-   // } 
+   const handleSubmit = (e) => {
+      e.preventDefault()
+      post('/auth/signup', newUser)
+         .then((results) => {
+            console.log("Created User", results.data)
+            navigate(`/profile/${results.data._id}`)
+            localStorage.setItem('authToken', results.data.token )
+            authenticateUser()
+         })
+         .catch((err) => {
+               console.log(err)
+         })    
+   } 
    
    
 
@@ -135,9 +71,7 @@ const SignUp = () => {
                      <input type='password' name="password" value={newUser.password} onChange={handleChange} className="px-4 py-2 border border-green-700 border-opacity-50"></input>
                      
                      <label className="text-green-700 text-opacity-75">Profile Image</label>
-                     <input type='file' name="profileImage"  onChange={handleFileUpload} 
-                     
-                        
+                     <input type='file' name="profileImage"                      
                       accept=".jpg, .jpeg, .png, .pdf" className="px-4 py-2 border border-green-700 border-opacity-50"></input>
                     
                      <button className="px-4 py-2 my-4 mr-2 font-bold text-white bg-green-700 bg-opacity-75 rounded hover:bg-green-500" type="submit"  >Sign Up</button> 

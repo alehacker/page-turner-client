@@ -26,7 +26,9 @@ const LoadingProvider = ({ children }) => {
          setMessage('')
       }, 4000)
    }
-  
+
+   //   *** getBooks gets all the books from the Google Books API  *** //
+
    const getBooks = (search) => {
       // if (!books) {
          axios.get(API + search)
@@ -39,33 +41,14 @@ const LoadingProvider = ({ children }) => {
          .catch((err) => {
             console.log(err)
          })
-      //   try {
-      //     const response = await axios.get(API + search);
-      //     console.log('response -->', response)
-      //     setBooks(response)
-      //    //  return response.data.items;
-      //   } catch (err) {
-      // //     console.log(err);
-      // //   }
-      // }
-    };
-   // const getBooks = async (search) => {
-   //    if (!books) {
-   //      try {
-   //        const response = await axios.get(API + search);
-   //        console.log('response -->', response)
-   //        setBooks(response)
-   //       //  return response.data.items;
-   //      } catch (err) {
-   //        console.log(err);
-   //      }
-   //    }
-   //  };  /delete-bookclub/:bookclubId/:userId
+   }
 
    const getIndex = (array, thisId) => {
       return array.findIndex((element) => element._id === thisId) 
   }
 
+
+   //   *** onDeleteClick deletes a bookClub. ***   //
    const onDeleteClick = (bookclubId) => {
       console.log("User deleting", user)
       get(`/bookclubs/delete-bookclub/${bookclubId}/${user._id}`)
@@ -86,7 +69,8 @@ const LoadingProvider = ({ children }) => {
           console.log('Error Deleting BookClub', err);
         });
    };
-  
+
+   //   *** onJoinClick adds a bookclub to the user's bookClubs array. ***   //
    const onJoinClick = (bookclubId) =>{
       console.log(" ---> UserId Joining Club", user._id)
       console.log(" ---> ClubId User wants to join", bookclubId)
@@ -116,7 +100,7 @@ const LoadingProvider = ({ children }) => {
          console.log(err)
       })
    }
-
+   // *** findBook finds a book from mongodb  *** //
    const findBook = (bookId) => {
       if (!books) {
         noBooks(bookId)
@@ -136,7 +120,7 @@ const LoadingProvider = ({ children }) => {
       console.log(err)
     })
   }
-
+   // ** getBookClub gets the bookclubdetails from mongodb  *** //
   const getBookClub = (id) => {
     get(`/bookclubs/bookclub-details/${id}`)
       .then((results) => {
@@ -147,9 +131,8 @@ const LoadingProvider = ({ children }) => {
         console.log(err)
       })
   }
-
+   // ** getBookDetails gets the bookdetails from Google Books API  *** //
   const getBookDetails = (bookId) => {
-
       axios.get(API + `/${bookId}`)
          .then((results) => {
             console.log("This is the found book:" , results.data.items[0])
@@ -158,9 +141,8 @@ const LoadingProvider = ({ children }) => {
          .catch((err) => {
             console.log(err)
          })
-
   }
-
+// ** getMongoBookDetails gets the bookdetails from mongodb  *** //
   const getMongoBookDetails = (bookId) =>{
    get(`/books//book-details/${bookId}`)
       .then((results) =>{
@@ -182,13 +164,12 @@ const LoadingProvider = ({ children }) => {
   }
 
 
-  
-
    return (
-      <LoadingContext.Provider value={ {getMongoBookDetails, onJoinClick, onDeleteClick,  books, book, setBooks, setBook, bookClubs, bookClub, setBookClub, setBookClubs, isLoading, message, setUser, user, setIsLoading, setMessage, setTimedMessage, getBooks, findBook, getBookDetails, getBookClubs, getAllBookClubs, getBookClub }}>
-         {children}
-      </LoadingContext.Provider>
-   );
-}
+         <LoadingContext.Provider value={ {getMongoBookDetails, onJoinClick, onDeleteClick,  books, book, setBooks, setBook, bookClubs, bookClub, setBookClub, setBookClubs, isLoading, message, setUser, user, setIsLoading, setMessage, setTimedMessage, getBooks, findBook, getBookDetails, getBookClubs, getAllBookClubs, getBookClub }}>
+            {children}
+         </LoadingContext.Provider>
+      );
+   }
+
 
 export { LoadingContext, LoadingProvider }
