@@ -14,7 +14,7 @@ function EditProfilePage() {
    
    const handleSubmit = (e) =>{
       e.preventDefault()
-      post(`/profile-edit/${user._id}`,user)
+      post(`users/profile-edit/${user._id}`,user)
       .then((results) =>{
          console.log('editing profile===>', results)
          setUser(results.data)
@@ -24,6 +24,19 @@ function EditProfilePage() {
          console.log(err)
       }) 
    }
+
+   // const handleSubmit = (e) =>{
+   //    e.preventDefault()
+   //    post(`/bookclubs/edit-bookclub/${bookclubId}/${userId}`, bookClub)
+   //    .then((results)=>{
+   //       console.log('results--->', results)
+   //       setBookClub(results.data)
+   //       navigate(`/bookclub-details/${bookclubId}`)
+   //    })
+   //    .catch((err) =>{
+   //       console.log(err)
+   //    }) 
+   // }
 
  
    return (
