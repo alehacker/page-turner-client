@@ -24,7 +24,11 @@ const UserProfile = () => {
    
    console.log('here is the user -->', user)
    // console.log('The whole Users collection', user.bookCollection)
+
    
+   useEffect(() => {
+     setUser(user)
+  }, [])
   
   return (
    <div className="max-w-2xl mx-auto mt-5">
