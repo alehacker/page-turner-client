@@ -63,6 +63,7 @@ const LoadingProvider = ({ children }) => {
    const onDeleteClick = (bookclubId) => {
       get(`/bookclubs/delete-bookclub/${bookclubId}/${user.id}`)
         .then((response) => {
+         console.log('deleted bookclub', response.data)
          let index = bookClubs.indexOf(response.data)
          let newBookClubs = bookClubs.splice(index, 1)
          setBookClubs(newBookClubs)

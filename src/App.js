@@ -49,7 +49,7 @@ function App() {
                   <Route path="/create-bookclub/:userId" element={<CreateBookClub />}></Route>
                      
                   <Route path="/bookclub-details/:bookclubId" element={<BookClubDetails title="Book Club Details" />}></Route>
-                  <Route path="/add-bookclub/:bookclubId/:userId" element={<BookClubDetails title="Add Book Club" />}></Route>
+                  <Route path="/add-bookclub/:bookclubId/:userId" element={<BookClubDetails title="Book Club Added" />}></Route>
                   <Route path="/delete-bookclub/:bookclubId/:userId" element={<BookClubDetails title="Delete Book Club" />}></Route>
                   
                   
