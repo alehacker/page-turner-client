@@ -135,7 +135,7 @@ const SignUp = () => {
                      <input type='password' name="password" value={newUser.password} onChange={handleChange} className="px-4 py-2 border border-green-700 border-opacity-50"></input>
                      
                      <label className="text-green-700 text-opacity-75">Profile Image</label>
-                     <input type='file' name="profileImage"  
+                     <input type='file' name="profileImage"  onChange={handleFileUpload} 
                      
                         
                       accept=".jpg, .jpeg, .png, .pdf" className="px-4 py-2 border border-green-700 border-opacity-50"></input>
