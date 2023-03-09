@@ -17,7 +17,7 @@ function EditProfilePage() {
       post(`/profile-edit/${user._id}`,user)
       .then((results) =>{
          console.log('editing profile===>', results)
-         setUser(results)
+         setUser(results.data)
          navigate(`/profile/${results._id}`)
       })
       .catch((err) =>{
