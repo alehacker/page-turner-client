@@ -84,7 +84,7 @@ function BookClubDetails ({ title }) {
                      </Link>
                }                    
                  { user && (checkCreator(bookClub.creator._id, user._id)) && <Link to={`/delete-bookclub/${bookClub._id}/${user._id}`} className="text-green-700 hover:text-green-500 focus:text-green-500" >
-                     <button className="px-4 py-2 my-4 mr-2 font-bold text-white bg-green-700 bg-opacity-75 rounded hover:bg-green-500" type="submit" onClick={onDeleteClick}>Delete Book Club</button>      
+                     <button className="px-4 py-2 my-4 mr-2 font-bold text-white bg-green-700 bg-opacity-75 rounded hover:bg-green-500" type="submit" onClick={() =>{onDeleteClick(bookClub._id)}}>Delete Book Club</button>      
                      </Link>
                }
          </>
