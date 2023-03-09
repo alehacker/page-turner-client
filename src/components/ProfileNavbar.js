@@ -15,7 +15,7 @@ const ProfileNavbar = () => {
 
    const { user } = useContext(LoadingContext)
 
-
+   // <a href="https://www.freepik.com/free-photo/blue-user-icon-symbol-website-admin-social-login-element-concept-white-background-3d-rendering_23524384.htm#query=people%20avatar&position=6&from_view=search&track=ais">Image by mamewmy</a> on Freepik
 
 
    return (

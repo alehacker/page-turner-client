@@ -9,13 +9,6 @@ const SearchBook = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     getBooks(searchTerm)
-   //  .then((results) =>{
-   //    console.log("Book result", results)
-   //    setBooks(results)
-   //  })
-   //  .catch((err) =>{
-   //    console.log(err)
-   //  })
     
   }
 
@@ -56,66 +49,7 @@ const SearchBook = () => {
       </ul>
     </div>
   );
-// return (
-//    <div className="flex flex-col items-center justify-between mt-5 md:flex-row md:ml-10 md:mt-0">
-//       <div className="max-w-lg mb-5 md:max-w-xl md:mb-0">
-//                <img
-//                   className="w-full h-auto"
-//                   src="/images/peoplereading.jpg"
-//                   alt="Book Clubs"
-//                />
-//       </div>
-//      <form className="flex flex-col items-center justify-between w-full md:w-1/3" onSubmit={handleSubmit}>
-//        <label className="mb-2 text-green-700 text-opacity-75">Search</label>
-//        <div className="flex items-center w-full bg-white border border-green-700 border-opacity-50 ">
-//          <input
-//            type="text"
-//            value={searchTerm}
-//            onChange={handleSearchTermChange}
-//            className="w-full px-4 py-2 rounded-full focus:outline-none"
-//          // className="px-4 py-2 border border-green-700 border-opacity-50"
-//            placeholder="Search Book..."
-//          />
-//          <button
-//          //   className="px-4 py-2 my-4 mr-2 font-bold text-white bg-green-700 bg-opacity-75 rounded-full hover:bg-green-500"
-//          className="w-1/2 px-4 py-2 my-4 mr-2 font-bold text-white bg-green-700 bg-opacity-75 rounded hover:bg-green-500"
-//            type="submit"
-//          >
-//            Search
-//          </button>
-//        </div>
-//      </form>
-//      <div className="ml-0 md:w-2/3 md:ml-10">
-//        {console.log("BOOKS", books)}
-//        <ul className="grid grid-cols-1 gap-4 mb-4 md:grid-cols-4">
-//          {books
-//            ? books.map((book) => {
-//                console.log("book==>", book);
-//                return (
-//                  <li key={book.id} className="p-4 border border-gray-300 rounded-md">
-//                    <Link
-//                      to={`/book-details/${book.id}`}
-//                      className="text-green-700 hover:text-green-500 focus:text-green-500"
-//                    >
-//                      <h3 className="text-lg font-bold">{book.volumeInfo.title}</h3>
-//                    </Link>
-//                    {book.volumeInfo.imageLinks?.thumbnail ? (
-//                      <img
-//                        src={book.volumeInfo.imageLinks?.thumbnail}
-//                        alt="Book cover"
-//                        className="w-48 h-auto mb-2"
-//                      />
-//                    ) : (
-//                      <p className="mt-2">Image not available</p>
-//                    )}
-//                  </li>
-//                );
-//              })
-//            : <p></p>}
-//        </ul>
-//      </div>
-//    </div>
-//  );
+
  
 }
 

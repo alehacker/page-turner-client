@@ -94,30 +94,3 @@ export default Navbar;
 
 
 
-// { token &&
-//    <div className='flex items-end justify-between h-16'>
-
-//       <div className="flex items-center flex-shrink-0 ml-auto">
-
-//             {user && <Link to={'/profile/:userId'} className= "mr-4 text-green-700 text-opacity-85">
-//             <UserCircleIcon className="mr-2 text-green-700 text-opacity-75 h-76 w-7" />Profile
-//             </Link>}
-
-//             <button className="px-4 py-2 my-4 mr-2 font-bold text-white bg-green-700 bg-opacity-75 rounded hover:bg-green-500" onClick={logout}>Logout</button>
-//       </div>
-//    </div> 
-// }
-// {  !token &&
-//    <div className='flex items-end justify-between h-16'> 
-//          <div className="flex items-center flex-shrink-0 ml-auto">
-
-//             <Link to={'/signup'} className= "mr-4 text-green-700 text-opacity-75"> 
-//             <UserPlusIcon className="w-6 h-6 mr-2 text-green-700 text-opacity-75" />Sign Up
-//             </Link>
-//             <Link to={'/login'}className="mr-4 text-green-700 text-opacity-75">  
-//             <UserIcon className="w-6 h-6 mr-2 text-green-700 text-opacity-75" />Login
-//             </Link>
-            
-//          </div>
-//    </div>
-// }

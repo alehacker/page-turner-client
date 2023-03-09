@@ -159,20 +159,6 @@ const LoadingProvider = ({ children }) => {
             console.log(err)
          })
 
-      // if (!books) {
-
-      //    // get(`/books/${bookId}/book-details`)
-      //    //   .then((results) => {
-      //    //     setBook(results.data)
-      //    //   })
-      //    //   .catch((err) => {
-      //    //     console.log(err)
-      //    //   })
-      // } else {
-      //    let thisBook = books.find((book) => book.id === bookId)
-      //    console.log("This Book", thisBook)
-      //    setBook(thisBook)
-      // }
   }
 
   const getAllBookClubs = () => {
