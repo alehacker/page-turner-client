@@ -2,11 +2,14 @@ import { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { post } from "../services/authService"
 import { AuthContext } from "../context/authContext"
+import { LoadingContext } from "../context/loadingContext"
+
 
 
 const SignUp = () => {
  
    const { authenticateUser } = useContext(AuthContext);
+   const { message} = useContext(LoadingContext)
    const [profileImage, setProfileImage] = useState(null);
    const [isUploading, setIsUploading] = useState(false);
    const navigate = useNavigate();

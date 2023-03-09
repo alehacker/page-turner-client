@@ -8,7 +8,8 @@ import { useNavigate } from "react-router-dom"
 
 
 const UserProfile = () => {
-   const {user, setUser, books, setBooks,bookclub, setBookClub, getMongoBookDetails } = useContext(LoadingContext)
+   const {user, setUser, books, setBooks,bookclub, setBookClub, getMongoBookDetails, message } = useContext(LoadingContext)
+   
    
    const navigate = useNavigate()
 
