@@ -43,7 +43,7 @@ const Navbar = () => {
                      <Link to={'/profile/:userId'}className="mr-4 text-green-700 text-opacity-75">  
                      <UserCircleIcon className="w-6 h-6 mr-2 text-green-700 text-opacity-75" />Profile
                      </Link>
-                     <Link onClick={logout} className="mr-4 text-green-700 text-opacity-75">  
+                     <Link to={'/'}onClick={logout} className="mr-4 text-green-700 text-opacity-75">  
                      <UserMinusIcon className="w-6 h-6 mr-2 text-green-700 text-opacity-75" />Logout
                      </Link>
                      {/* <button className="px-4 py-2 my-4 mr-2 font-bold text-white bg-transparent bg-opacity-75 border border-green-700 rounded hover:bg-green-500" onClick={logout}>Logout</button> */}
