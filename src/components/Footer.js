@@ -12,14 +12,9 @@ const Footer = () => {
 
 
    return (
-      <footer className="py-6 bg-white shadow">
+      <footer className="w-full py-6 bg-white shadow ">
         <div className="container flex items-center justify-between px-4 mx-auto">
-          <p className="text-gray-300">&copy; 2023 Page Turners Lounge. All Rights Reserved.</p>
-          <ul className="flex list-none">
-            <li className="mr-4"><a href="#" className="text-gray-300 hover:text-white">Terms of Use</a></li>
-            <li className="mr-4"><a href="#" className="text-gray-300 hover:text-white">Privacy Policy</a></li>
-            <li><a href="#" className="text-gray-300 hover:text-white">Contact</a></li>
-          </ul>
+          <p className="text-green-300">&copy; 2023 Page Turners Lounge. All Rights Reserved.</p>
         </div>
       </footer>
     );

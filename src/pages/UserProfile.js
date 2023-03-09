@@ -37,9 +37,9 @@ const UserProfile = () => {
                   <ul>                 
                      {
                         user.bookClubs? user.bookClubs.map((club) => (
-                        
-                           <li className="mb-2 text-green-700 text-opacity-75" key={club.id}>{club.name}</li>    
-                        
+                           <Link to={`/bookclub-details/${club.id}`} className="text-green-700 hover:text-green-500 focus:text-green-500" >
+                              <li className="mb-2 text-green-700 text-opacity-75" key={club.id}>{club.name}</li>    
+                           </Link>
                      )): <p className="mb-2">no book clubs yet</p>}
                   </ul>
 
@@ -49,8 +49,10 @@ const UserProfile = () => {
                   <ul className="grid grid-cols-3 gap-4 text-green-700 text-opacity-75">
                      {user.bookCollection ? user.bookCollection.map((book) => (
                         <li key={book._id} className="p-4 bg-white rounded-lg shadow-md">
-                        <img src={book.bookImg} alt={book.title}  className="object-contain w-full h-48" />                     
-                        <h3  className="mb-2 text-lg font-bold">{book.title}</h3>                                        
+                        <img src={book.bookImg} alt={book.title}  className="object-contain w-full h-48" /> 
+                        <Link to={`/book-details/${book._id}`} >                   
+                           <h3  className="mb-2 text-lg font-bold">{book.title}</h3> 
+                        </Link>                                        
                         <p className="mb-2">{book.author}</p>
                         <p className="mb-2">{book.pages} pages</p>
                         <p className="mb-2">Published: {book.publishedDate}</p>
@@ -70,10 +72,6 @@ const UserProfile = () => {
 export default UserProfile
 
 
-{/* <h3  className="mb-2 text-lg font-bold">{book.title}</h3>   */}
-{/* <Link to={`/book-details/${book.id}`} >
-   <h3  className="mb-2 text-lg font-bold">{book.title}</h3>
-</Link> */}
 
  //***this link is not working***  The problem might be the club.id not 'translating' into the bookclubId used on that route//
 {/* <ul>
