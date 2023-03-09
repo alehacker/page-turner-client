@@ -58,7 +58,20 @@ const LoadingProvider = ({ children }) => {
    //        console.log(err);
    //      }
    //    }
-   //  };
+   //  };  /delete-bookclub/:bookclubId/:userId
+
+   const onDeleteClick = (bookclubId) => {
+      get(`/bookclubs/delete-bookclub/${bookclubId}/${user.id}`)
+        .then((response) => {
+         let index = bookClubs.indexOf(response.data)
+         let newBookClubs = bookClubs.splice(index, 1)
+         setBookClubs(newBookClubs)
+        })
+        .catch((err) => {
+          console.log('Error Deleting BookClub');
+        });
+   };
+   
 
    const noBooks = (bookId) => {
       axios.get(API)
@@ -141,12 +154,13 @@ const LoadingProvider = ({ children }) => {
       })
   }
 
+
   
 
    return (
-        <LoadingContext.Provider value={{ books, book, setBooks, setBook, bookClubs, bookClub, setBookClub, setBookClubs, isLoading, message, setUser, user, setIsLoading, setMessage, setTimedMessage, getBooks, findBook, getBookDetails, getBookClubs, getAllBookClubs, getBookClub }}>
-          {children}
-        </LoadingContext.Provider>
+      <LoadingContext.Provider value={ {onDeleteClick,  books, book, setBooks, setBook, bookClubs, bookClub, setBookClub, setBookClubs, isLoading, message, setUser, user, setIsLoading, setMessage, setTimedMessage, getBooks, findBook, getBookDetails, getBookClubs, getAllBookClubs, getBookClub }}>
+         {children}
+      </LoadingContext.Provider>
    );
 }
 
