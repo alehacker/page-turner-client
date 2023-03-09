@@ -71,6 +71,10 @@ const LoadingProvider = ({ children }) => {
          let newBookClubs = bookClubs.splice(index, 1)
          setBookClubs(newBookClubs)
          navigate(`/profile/${user._id}`)
+         let updatedUser = Object.assign({}, user)
+
+         updatedUser.bookClubs = updatedUser.bookClubs.filter((club) => club._id !== response.data._id)
+         setUser(updatedUser)
         })
         .catch((err) => {
           console.log('Error Deleting BookClub', err);
