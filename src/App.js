@@ -1,6 +1,7 @@
 import "./App.css";
 import { Routes, Route, Link, Navigate, Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage";
 import BookClubDetails from "./pages/BookClubDetails";
 import BookClubList from "./pages/BookClubList";
@@ -67,6 +68,8 @@ function App() {
                   
                </Routes>
             </div>
+
+            <Footer/>
         </div>
     );
 }
