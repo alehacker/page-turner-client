@@ -50,9 +50,7 @@ const UserProfile = () => {
                      {user.bookCollection ? user.bookCollection.map((book) => (
                         <li key={book._id} className="p-4 bg-white rounded-lg shadow-md">
                         <img src={book.bookImg} alt={book.title}  className="object-contain w-full h-48" />                     
-                          <Link to={`/book-details/${book.id}`} >
-                              <h3  className="mb-2 text-lg font-bold">{book.title}</h3>
-                           </Link>                 
+                        <h3  className="mb-2 text-lg font-bold">{book.title}</h3>                                        
                         <p className="mb-2">{book.author}</p>
                         <p className="mb-2">{book.pages} pages</p>
                         <p className="mb-2">Published: {book.publishedDate}</p>
