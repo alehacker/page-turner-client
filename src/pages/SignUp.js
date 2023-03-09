@@ -23,7 +23,7 @@ const SignUp = () => {
        lastName: "",
        email: "",
        password: "",
-       profileImage: "",
+       profileImage: profileImage,
       }
    )
    
