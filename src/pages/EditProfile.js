@@ -14,9 +14,9 @@ function EditProfilePage() {
    
    const handleSubmit = (e) =>{
       e.preventDefault()
-      post(`users/profile-edit/${user._id}`,user)
+      post(`/users/profile-edit/${user._id}`,user)
       .then((results) =>{
-         console.log('editing profile===>', results)
+         console.log('editing profile===>', results.data)
          setUser(results.data)
          navigate(`/profile/${results._id}`)
       })
