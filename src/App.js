@@ -50,7 +50,7 @@ function App() {
                      
                   <Route path="/bookclub-details/:bookclubId" element={<BookClubDetails title="Book Club Details" />}></Route>
                   <Route path="/add-bookclub/:bookclubId/:userId" element={<BookClubDetails title="Book Club Added" />}></Route>
-                  <Route path="/delete-bookclub/:bookclubId/:userId" element={<BookClubDetails title="Delete Book Club" />}></Route>
+                  {/* <Route path="/delete-bookclub/:bookclubId/:userId" element={<BookClubDetails title="Delete Book Club" />}></Route> */}
                   
                   
                   {/* Dobule check this is the right component to deal with adding a book */}
