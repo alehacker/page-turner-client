@@ -89,6 +89,8 @@ const LoadingProvider = ({ children }) => {
   
    const onJoinClick = (bookclubId) =>{
       console.log(" ---> User Joining Club", user)
+      console.log(" ---> ClubId User wants to join", bookclubId)
+
       post(`/bookclubs/add-bookclub/${bookclubId}/${user._id}`)
       .then((response) =>{
          console.log('This USER joined a club', response.data)
