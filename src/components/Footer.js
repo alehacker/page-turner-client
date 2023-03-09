@@ -12,9 +12,9 @@ const Footer = () => {
 
 
    return (
-      <footer className="w-full py-6 bg-white shadow ">
+      <footer className="py-6 bg-white shadow ">
         <div className="container flex items-center justify-between px-4 mx-auto">
-          <p className="text-green-300">&copy; 2023 Page Turners Lounge. All Rights Reserved.</p>
+          <p className="text-green-700 text-opacity-75">&copy; 2023 Page Turners Lounge. All Rights Reserved.</p>
         </div>
       </footer>
     );

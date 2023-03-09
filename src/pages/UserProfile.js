@@ -2,12 +2,25 @@ import { get } from "../services/authService"
 import { useState, useEffect, useContext} from "react"
 import { LoadingContext, LoadingProvider } from "../context/loadingContext"
 import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 
 
 
 const UserProfile = () => {
-   const {user, setUser, books, setBooks,bookclub, setBookClub } = useContext(LoadingContext)
+   const {user, setUser, books, setBooks,bookclub, setBookClub, getBookDetails } = useContext(LoadingContext)
+   
+   const navigate = useNavigate()
+
+   const handleBookClick = (bookId) =>{
+      getBookDetails(bookId)
+      .then((results) =>{
+         navigate(`/book-details/${results.data._id}`)
+      })
+      .catch((err) =>{
+         console.log('Error on getting BookDetails', err)
+      })
+   }
    
    console.log('here is the user -->', user)
    // console.log('The whole Users collection', user.bookCollection)
@@ -37,9 +50,9 @@ const UserProfile = () => {
                   <ul>                 
                      {
                         user.bookClubs? user.bookClubs.map((club) => (
-                           <Link to={`/bookclub-details/${club.id}`} className="text-green-700 hover:text-green-500 focus:text-green-500" >
+                           
                               <li className="mb-2 text-green-700 text-opacity-75" key={club.id}>{club.name}</li>    
-                           </Link>
+                           
                      )): <p className="mb-2">no book clubs yet</p>}
                   </ul>
 
@@ -47,12 +60,12 @@ const UserProfile = () => {
                <div>
                   <h2 className="mb-2 text-lg font-bold text-green-700 text-opacity-75 ">Books I Like</h2>
                   <ul className="grid grid-cols-3 gap-4 text-green-700 text-opacity-75">
-                     {user.bookCollection ? user.bookCollection.map((book) => (
+                     {user.bookCollection ?  user.bookCollection.map((book) => ( 
                         <li key={book._id} className="p-4 bg-white rounded-lg shadow-md">
                         <img src={book.bookImg} alt={book.title}  className="object-contain w-full h-48" /> 
-                        <Link to={`/book-details/${book._id}`} >                   
+                        <Link to={`/book-details/${book._id}`} onClick= {()=>{handleBookClick(book._id)}}>               
                            <h3  className="mb-2 text-lg font-bold">{book.title}</h3> 
-                        </Link>                                        
+                        </Link>                                    
                         <p className="mb-2">{book.author}</p>
                         <p className="mb-2">{book.pages} pages</p>
                         <p className="mb-2">Published: {book.publishedDate}</p>
@@ -73,14 +86,9 @@ export default UserProfile
 
 
 
- //***this link is not working***  The problem might be the club.id not 'translating' into the bookclubId used on that route//
-{/* <ul>
-                  
-{
-   user.bookClubs? user.bookClubs.map((club) => (
-   <Link to={`/bookclub-details/${user.bookClubs[club]}`} className="text-green-700 hover:text-green-500 focus:text-green-500" >
-      <li className="mb-2 text-l" key={club.id}>{club.name}</li>    
-   </Link> //***this link is not working***  The problem might be the club.id not 'translating' into the bookclubId used on that route//
-   
-)): <p className="mb-2">no book clubs yet</p>}
-</ul> */}
+
+// BookClub Details Link for the user's Profile
+//  <Link to={`/bookclub-details/${club.id}`} className="text-green-700 hover:text-green-500 focus:text-green-500" > </Link>
+
+//  Book Details link from User's Profile
+//   
