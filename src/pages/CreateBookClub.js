@@ -35,16 +35,19 @@ const CreateBookClub = () => {
 
    const handleSubmit = (e) => {
       e.preventDefault()
-
+      
       post(`/bookclubs/create-bookclub/${user._id}`, newBookClub)
-         .then((results) => {
-            console.log('results--->', results)
-            if (!bookClubs) {
+      .then((results) => {
+         console.log('results--->', results)
+         if (!bookClubs) {
+               console.log("clubssssss", bookClubs)
+               console.log("this", bookClubs)
                navigate('/bookclubs') 
                return
             } else {
                
                let newBookClubs = [...bookClubs]
+               console.log("copy", newBookClubs)
                newBookClubs.unshift(results.data)
                setBookClubs(newBookClubs)
                console.log('newbookclubs ==>', bookClubs)
@@ -63,7 +66,8 @@ const CreateBookClub = () => {
             // authenticateUser()
          })
          .catch((err) => {
-               console.log(err)
+            
+               console.log("Line 70", err)
          })    
    } 
    
