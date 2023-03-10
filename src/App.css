@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+.message {
+   background:  rgb(101, 225, 147);
+   box-sizing: border-box;
+   color: #fff;
+   margin: 20px auto;
+   padding: 20px;
+   width: 380px;
+ }
