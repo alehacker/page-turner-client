@@ -77,6 +77,14 @@ const Navbar = () => {
                         <path fillRule="evenodd" clipRule="evenodd" d="M4 6h16v2H4V6zm0 5h16v2H4v-2zm0 5h16v2H4v-2z" />
                      </svg>
                   </button>
+                  <div className="hidden sm:block sm:ml-4 sm:space-x-4">
+                     <Link to={'/bookclubs'} className="px-3 py-2 text-sm font-medium text-green-700 rounded-md font-large hover:text-green-500">
+                        Check All Book Clubs
+                     </Link>
+                     <Link to={'/books'} className="px-3 py-2 text-sm font-medium text-green-700 rounded-md font-large hover:text-green-500">
+                        Find a Book
+                     </Link>
+                  </div>
                </div>
          </div>
       </div>
