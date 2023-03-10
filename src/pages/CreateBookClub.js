@@ -16,7 +16,7 @@ const CreateBookClub = () => {
       {
        name: "",
        description: "",
-       clubImg: "",
+      //  clubImg: "",
        meetingLink: "",
        schedule: "",
        creator:"" || user?._id,
@@ -99,8 +99,8 @@ const CreateBookClub = () => {
                      <label className="text-green-700 text-opacity-75">Description</label>
                      <input type='text' name="description" value={newBookClub.description} onChange={handleChange} className="px-4 py-2 border border-green-700 border-opacity-50"></input>
 
-                     <label className="text-green-700 text-opacity-75">Book Club Image</label>
-                     <input type='file' name="clubImg" value={newBookClub.clubImg} onChange={handleChange} accept=".jpg, .jpeg, .png, .pdf" className="px-4 py-2 border border-green-700 border-opacity-50"></input>
+                     {/* <label className="text-green-700 text-opacity-75">Book Club Image</label>
+                     <input type='file' name="clubImg" value={newBookClub.clubImg} onChange={handleChange} accept=".jpg, .jpeg, .png, .pdf" className="px-4 py-2 border border-green-700 border-opacity-50"></input> */}
                      
                      <label className="text-green-700 text-opacity-75">Meeting Link</label>
                      <input type='text' name="meetingLink" value={newBookClub.meetingLink} onChange={handleChange} className="px-4 py-2 border border-green-700 border-opacity-50"></input>
