@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { LoadingContext } from '../context/loadingContext';
 
 const SearchBook = () => {
-  const { books, setBooks, getBooks } = useContext(LoadingContext);
+  const { books, setBooks, getBooks, message } = useContext(LoadingContext);
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleSubmit = (e) => {
@@ -47,6 +47,7 @@ const SearchBook = () => {
           </li>
          )}): <p> </p>}
       </ul>
+      {message && <p className="text-white bg-green-700 bg-opacity-75 error">{message}</p>}
     </div>
   );
 

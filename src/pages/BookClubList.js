@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 const BookClubList = () => {
    
-   const { bookClubs, getBookClubs } = useContext(LoadingContext)
+   const { bookClubs, getBookClubs, message } = useContext(LoadingContext)
 
    
 
@@ -47,6 +47,7 @@ const BookClubList = () => {
          }
             
          </div>
+         {message && <p className="text-white bg-green-700 bg-opacity-75 error">{message}</p>}
     </div>
    )
 }

@@ -8,7 +8,7 @@ import { post } from "../services/authService"
 const Login = () => {
 
     const { authenticateUser } = useContext(AuthContext)
-    const { user, setUser } = useContext(LoadingContext)
+    const { user, setUser, message } = useContext(LoadingContext)
     const [ thisUser, setthisUser ] = useState(
         {
             email: "",
@@ -63,7 +63,7 @@ const Login = () => {
                  
                </form>
             </div>
-
+            {message && <p className="text-white bg-green-700 bg-opacity-75 error">{message}</p>}
       </div>
     )
 }

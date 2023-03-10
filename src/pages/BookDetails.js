@@ -9,7 +9,7 @@ import { API } from "../services/apiUrl";
 function BookDetails () {
 const navigate = useNavigate()
  const { authenticateUser } = useContext(AuthContext)
- const { getBookDetails, getBooks, book, user, findBook, setUser } = useContext(LoadingContext)
+ const { getBookDetails, getBooks, book, user, findBook, setUser, message } = useContext(LoadingContext)
 
  const { bookId } = useParams()
 
@@ -58,6 +58,7 @@ const navigate = useNavigate()
       :
       <h4>Loading...</h4>
       }
+      {message && <p className="text-white bg-green-700 bg-opacity-75 error">{message}</p>}
  </div>
   )
 }

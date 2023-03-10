@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 function BookClubDetails ({ title }) {
    const navigate = useNavigate()
    const { authenticateUser } = useContext(AuthContext)
-   const { bookClub, setBookClub,  user,  setUser, getBookClub, onDeleteClick, onJoinClick } = useContext(LoadingContext)
+   const { bookClub, setBookClub,  user,  setUser, getBookClub, onDeleteClick, onJoinClick, message } = useContext(LoadingContext)
 
    const { bookclubId } = useParams()
 
@@ -93,7 +93,7 @@ function BookClubDetails ({ title }) {
          <h4 className="mb-2 text-lg font-bold text-green-700 text-opacity-75 ">Loading...</h4>
          
       }
-   
+      {message && <p className="text-white bg-green-700 bg-opacity-75 error">{message}</p>}
    </div>
   )
 }

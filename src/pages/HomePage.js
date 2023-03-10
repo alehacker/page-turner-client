@@ -2,8 +2,10 @@
 import { useEffect, useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import BookClubList from "./BookClubList";
+import { LoadingContext } from "../context/loadingContext";
 
 const HomePage = () => {
+   const { message } = useContext(LoadingContext)
    return (
       <div>
          <div className="flex flex-col items-center justify-center mt-10 md:flex-row">
@@ -40,6 +42,7 @@ const HomePage = () => {
                <BookClubList />
             </div>
          </div>
+         {message && <p className="text-white bg-green-700 bg-opacity-75 error">{message}</p>}
       </div>
    );
 };

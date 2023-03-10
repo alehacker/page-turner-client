@@ -80,6 +80,7 @@ const SignUp = () => {
                      <button className="px-4 py-2 my-4 mr-2 font-bold text-white bg-green-700 bg-opacity-75 rounded hover:bg-green-500" type="submit"  >Sign Up</button> 
                   </form>
             </div>
+            {message && <p className="text-white bg-green-700 bg-opacity-75 error">{message}</p>}
       </div>
       
    )

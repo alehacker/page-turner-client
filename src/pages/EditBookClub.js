@@ -5,7 +5,7 @@ import { LoadingContext } from "../context/loadingContext"
 import { post } from "../services/authService"
 
 function EditBookClubPage() {
-   const {user, setUser, bookClub, setBookClub, getBookClubs, getBookClub} = useContext(LoadingContext)
+   const {user, setUser, bookClub, setBookClub, getBookClubs, getBookClub, message} = useContext(LoadingContext)
 
    const { bookclubId, userId} = useParams()
    
@@ -72,7 +72,7 @@ function EditBookClubPage() {
                
                }
             </div>
-
+            {message && <p className="text-white bg-green-700 bg-opacity-75 error">{message}</p>}
       </div>
     )
 }

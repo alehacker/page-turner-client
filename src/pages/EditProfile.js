@@ -5,7 +5,7 @@ import { LoadingContext } from "../context/loadingContext"
 import { post } from "../services/authService"
 
 function EditProfilePage() {
-   const {user, setUser, books, setBooks, } = useContext(LoadingContext)
+   const {user, setUser, books, setBooks,message } = useContext(LoadingContext)
    const navigate = useNavigate()
 
    const handleChange = (e) => {
@@ -57,7 +57,7 @@ function EditProfilePage() {
                  
                </form>
             </div>
-
+            {message && <p className="text-white bg-green-700 bg-opacity-75 error">{message}</p>}
       </div>
     )
 }
