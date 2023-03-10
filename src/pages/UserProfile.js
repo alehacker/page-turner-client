@@ -32,7 +32,7 @@ const UserProfile = () => {
       {user && (
         <>
           <div className="flex flex-col items-center p-4 bg-gray-100">
-               <img className="object-cover w-20 h-20 mb-2 rounded-full" src='user.profileImage' alt='Profile'></img>
+               {/* <img className="object-cover w-20 h-20 mb-2 rounded-full" src='user.profileImage' alt='Profile'></img> */}
                <h2 className="text-xl font-bold text-green-700 text-opacity-75 ">{user.firstName} {user.lastName}</h2>
                <p className="text-green-700">Email: {user.email}</p>
                <Link to={`/create-bookclub/${user._id}`}

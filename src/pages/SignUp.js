@@ -73,9 +73,9 @@ const SignUp = () => {
                      <label className="text-green-700 text-opacity-75">Password</label>
                      <input type='password' name="password" value={newUser.password} onChange={handleChange} className="px-4 py-2 border border-green-700 border-opacity-50"></input>
                      
-                     <label className="text-green-700 text-opacity-75">Profile Image</label>
-                     <input type='file' name="profileImage"                      
-                      accept=".jpg, .jpeg, .png, .pdf" className="px-4 py-2 border border-green-700 border-opacity-50"></input>
+                     {/* <label className="text-green-700 text-opacity-75">Profile Image</label>
+                     <input type='file' name="profileImage" value={newUser.profileImage}                     
+                      accept=".jpg, .jpeg, .png, .pdf" className="px-4 py-2 border border-green-700 border-opacity-50"></input> */}
                     
                      <button className="px-4 py-2 my-4 mr-2 font-bold text-white bg-green-700 bg-opacity-75 rounded hover:bg-green-500" type="submit"  >Sign Up</button> 
                   </form>
