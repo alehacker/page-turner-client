@@ -15,6 +15,7 @@ const SignUp = () => {
    const [profileImage, setProfileImage] = useState(null);
    const [isUploading, setIsUploading] = useState(false);
    const navigate = useNavigate();
+   
    const [ file, setFile ] = useState([])
    
 
@@ -54,16 +55,16 @@ const SignUp = () => {
       setFile(e.target.files[0])
   }
 
-  const handleUpload = async() => {
+  const handleUpload =  async() => {
    try {
-       const uploadData = new FormData()
-       uploadData.append('profileImage', file)
-       const response = await Axios.post(baseUrl + '/auth/upload-photo', uploadData)
-       console.log(response)
-       return(response.data.url)
-   } catch (error) {
-       console.log(error)
-   }
+      const uploadData = new FormData()
+      uploadData.append('profileImage', file)
+      const response = await post('/auth/upload-image', uploadData)
+      console.log('Here is the response ===>',response)
+      return(response.data.url)
+  } catch (error) {
+      console.log(error)
+  }
 }
    
    
