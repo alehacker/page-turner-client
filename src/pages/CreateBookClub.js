@@ -3,10 +3,13 @@ import { useNavigate } from "react-router-dom"
 import { LoadingContext } from "../context/loadingContext";
 import { AuthContext } from "../context/authContext";
 import { post } from "../services/authService";
+import { Axios } from "axios";
 import { API } from "../services/apiUrl";
 
 const CreateBookClub = () => {
    const { authenticateUser } = useContext(AuthContext)
+   
+   const [ file, setFile ] = useState([])
 
    const navigate = useNavigate()
    
@@ -16,7 +19,6 @@ const CreateBookClub = () => {
       {
        name: "",
        description: "",
-      //  clubImg: "",
        meetingLink: "",
        schedule: "",
        creator:"" || user?._id,
@@ -26,8 +28,6 @@ const CreateBookClub = () => {
       }
    )
 
-   
-
    const handleChange = (e) => {
       setNewBookClub((recent)=>({...recent, [e.target.name]: e.target.value}))
       console.log("Creating BookClub", newBookClub)
@@ -35,48 +35,62 @@ const CreateBookClub = () => {
 
    const handleSubmit = (e) => {
       e.preventDefault()
-      
-      post(`/bookclubs/create-bookclub/${user._id}`, newBookClub)
-      .then((results) => {
-         console.log('results--->', results)
-         if (!bookClubs) {
-               console.log("clubssssss", bookClubs)
-               console.log("this", bookClubs)
-               navigate('/bookclubs') 
-               return
-            } else {
-               
-               let newBookClubs = [...bookClubs]
-               console.log("copy", newBookClubs)
-               newBookClubs.unshift(results.data)
-               setBookClubs(newBookClubs)
-               console.log('newbookclubs ==>', bookClubs)
-               
-               let newUser = Object.assign({}, user)
-               newUser.bookClubs.push(results.data)
-               console.log('here is the user with the new bookclub',newUser)
-               setUser(newUser)
-               
-               console.log('the newBookClub -->', results.data)
-                  
-               navigate('/bookclubs') // I'm not sure where to navigate once the bookclub is created. Maybe the bookclub page
-            }
 
-            // localStorage.setItem('authToken', results.data.token )
-            // authenticateUser()
-         })
-         .catch((err) => {
-            
-               console.log("Line 70", err)
-         })    
+      handleUpload()
+      .then((response) =>{
+         post(`/bookclubs/create-bookclub/${user._id}`, {...newBookClub, clubImg: response })
+         .then((results) => {
+            console.log('results--->', results)
+            if (!bookClubs) {
+                  console.log("clubssssss", bookClubs)
+                  console.log("this", bookClubs)
+                  navigate('/bookclubs') 
+                  return
+               } else {
+                  
+                  let newBookClubs = [...bookClubs]
+                  console.log("copy", newBookClubs)
+                  newBookClubs.unshift(results.data)
+                  setBookClubs(newBookClubs)
+                  console.log('newbookclubs ==>', bookClubs)
+                  
+                  let newUser = Object.assign({}, user)
+                  newUser.bookClubs.push(results.data)
+                  console.log('here is the user with the new bookclub',newUser)
+                  setUser(newUser)
+                  
+                  console.log('the newBookClub -->', results.data)
+                     
+                  navigate('/bookclubs') // I'm not sure where to navigate once the bookclub is created. Maybe the bookclub page
+               }
+   
+               // localStorage.setItem('authToken', results.data.token )
+               // authenticateUser()
+            })
+            .catch((err) => {
+               
+                  console.log("Line 70", err)
+            })    
+      })
+      
    } 
    
-   // useEffect(() => {
-   //    if (!bookClubs){
-   //       getBookClubs()
-         
-   //    } 
-   // }, []);
+   const handleFile = (e) => {
+      setFile(e.target.files[0])
+  }
+  
+  const handleUpload = async() => {
+   try {
+       const uploadData = new FormData()
+       uploadData.append('profileImage', file)
+       const response = await Axios.post('https://page-turner-server.fly.dev/auth/upload-photo', uploadData)
+       console.log(response)
+       return(response.data.url)
+   } catch (error) {
+       console.log(error)
+   }
+}
+   
 
    return (
       <div className="flex flex-col items-center justify-center w-full mt-10 md:flex-row">
@@ -99,8 +113,8 @@ const CreateBookClub = () => {
                      <label className="text-green-700 text-opacity-75">Description</label>
                      <input type='text' name="description" value={newBookClub.description} onChange={handleChange} className="px-4 py-2 border border-green-700 border-opacity-50"></input>
 
-                     {/* <label className="text-green-700 text-opacity-75">Book Club Image</label>
-                     <input type='file' name="clubImg" value={newBookClub.clubImg} onChange={handleChange} accept=".jpg, .jpeg, .png, .pdf" className="px-4 py-2 border border-green-700 border-opacity-50"></input> */}
+                     <label className="text-green-700 text-opacity-75">Book Club Image</label>
+                     <input type='file' name="clubImg"  onChange={handleFile} className="px-4 py-2 border border-green-700 border-opacity-50"></input>
                      
                      <label className="text-green-700 text-opacity-75">Meeting Link</label>
                      <input type='text' name="meetingLink" value={newBookClub.meetingLink} onChange={handleChange} className="px-4 py-2 border border-green-700 border-opacity-50"></input>

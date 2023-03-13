@@ -78,7 +78,9 @@ const UserProfile = () => {
           </div>
         </>
       )}
+      
       {message && <p className="text-white bg-green-700 bg-opacity-75 error">{message}</p>}
+      
     </div>
     
   )
