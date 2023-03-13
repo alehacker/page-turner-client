@@ -59,7 +59,7 @@ const SignUp = () => {
    try {
       const uploadData = new FormData()
       uploadData.append('profileImage', file)
-      const response = await post('/auth/upload-image', uploadData)
+      const response = await post('/auth/upload-photo', uploadData)
       console.log('Here is the response ===>',response)
       return(response.data.url)
   } catch (error) {
