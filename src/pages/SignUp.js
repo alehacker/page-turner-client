@@ -37,7 +37,7 @@ const SignUp = () => {
       e.preventDefault()
       handleUpload()
       .then((response) => {
-         post('/auth/signup', newUser)
+         post('/auth/signup',  {...newUser, profileImage: response})
       })
       .then((results) => {
          console.log("Created User", results.data)
