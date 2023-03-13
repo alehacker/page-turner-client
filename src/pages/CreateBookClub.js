@@ -84,7 +84,7 @@ const CreateBookClub = () => {
    try {
        const uploadData = new FormData()
        uploadData.append('profileImage', file)
-       const response = await Axios.post(baseUrl +'/auth/upload-photo', uploadData)
+       const response = await post('/auth/upload-photo', uploadData)
        console.log(response)
        return(response.data.url)
    } catch (error) {
