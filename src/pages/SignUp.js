@@ -37,6 +37,7 @@ const SignUp = () => {
       e.preventDefault()
       handleUpload()
       .then((response) => {
+         console.log('Line 40 -Response from HandleUpload ==>', response)
          post('/auth/signup',  {...newUser, profileImage: response})
       })
       .then((results) => {
