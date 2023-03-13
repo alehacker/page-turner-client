@@ -5,6 +5,7 @@ import { AuthContext } from "../context/authContext";
 import { post } from "../services/authService";
 import { Axios } from "axios";
 import { API } from "../services/apiUrl";
+import { baseUrl } from "../services/baseUrl";
 
 const CreateBookClub = () => {
    const { authenticateUser } = useContext(AuthContext)
@@ -83,7 +84,7 @@ const CreateBookClub = () => {
    try {
        const uploadData = new FormData()
        uploadData.append('profileImage', file)
-       const response = await Axios.post('/auth/upload-photo', uploadData)
+       const response = await Axios.post(baseUrl +'/auth/upload-photo', uploadData)
        console.log(response)
        return(response.data.url)
    } catch (error) {
