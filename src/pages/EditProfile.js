@@ -29,7 +29,7 @@ function EditProfilePage() {
          console.log('Here is the Profile Image ===>>', response )
          post(`/users/profile-edit/${user._id}`,{...user, profileImage: response})
          .then((results) =>{
-            console.log('Here is the users Profile Image ===>>', results.data.profileImage)
+            console.log('Here is the users Profile Image ===>>', results)
             console.log('editing profile===>', results.data)
             
             setUser(results.data)
@@ -59,6 +59,8 @@ function EditProfilePage() {
          console.log(error)
      }
    }
+
+   
 
  
    return (
