@@ -26,10 +26,14 @@ function EditProfilePage() {
       
       handleUpload()
       .then((response) => {
+         console.log('Here is the Profile Image ===>>', response )
          post(`/users/profile-edit/${user._id}`,{...user, profileImage: response})
          .then((results) =>{
+            console.log('Here is the users Profile Image ===>>', results.data.profileImage)
             console.log('editing profile===>', results.data)
+            
             setUser(results.data)
+            console.log ("EDITED USER", user)
             navigate(`/profile/${results._id}`)
          })
          .catch((err) =>{
