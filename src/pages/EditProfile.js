@@ -3,27 +3,57 @@ import { useNavigate } from "react-router-dom"
 import { AuthContext } from "../context/authContext"
 import { LoadingContext } from "../context/loadingContext"
 import { post } from "../services/authService"
+import axios from "axios"
 
 function EditProfilePage() {
-   const {user, setUser, books, setBooks,message } = useContext(LoadingContext)
+   const {user, setUser, books, setBooks, message } = useContext(LoadingContext)
+   const { authenticateUser } = useContext(AuthContext) 
+   
    const navigate = useNavigate()
-
+   
+   const [ file, setFile ] = useState([])
+   
    const handleChange = (e) => {
       setUser((recent) => ({...recent, [e.target.name]: e.target.value}))
-   }
+  }
+
+   const handleFile = (e) => {
+      setFile(e.target.files[0])
+  }
    
    const handleSubmit = (e) =>{
       e.preventDefault()
-      post(`/users/profile-edit/${user._id}`,user)
-      .then((results) =>{
-         console.log('editing profile===>', results.data)
-         setUser(results.data)
-         navigate(`/profile/${results._id}`)
+      handleUpload()
+      .then((response) => {
+         post(`/users/profile-edit/${user._id}`,{...user, profileImage: response})
+         .then((results) =>{
+            console.log('editing profile===>', results.data)
+            setUser(results.data)
+            navigate(`/profile/${results._id}`)
+         })
+         .catch((err) =>{
+            console.log(err)
+         })
+         .finally(() => {
+            authenticateUser()
+         })
       })
       .catch((err) =>{
          console.log(err)
-      }) 
+      })
    }
+
+   const handleUpload = async() => {
+      try {
+          const uploadData = new FormData()
+          uploadData.append('profileImage', file)
+          const response = await post('/auth/upload-photo', uploadData)
+          console.log(response)
+          return(response.data.url)
+      } catch (error) {
+          console.log(error)
+      }
+  }
 
  
    return (
@@ -51,7 +81,7 @@ function EditProfilePage() {
                   <label className="text-green-700 text-opacity-75">Profile Image</label>
                      <input type='file' name="profileImage" 
                      // value={user.profileImage} 
-                     onChange={handleChange} accept=".jpg, .jpeg, .png, .pdf" className="px-4 py-2 border border-green-700 border-opacity-50"></input>
+                     onChange={handleFile}  className="px-4 py-2 border border-green-700 border-opacity-50"></input>
 
                   <button className="px-4 py-2 my-4 mr-2 font-bold text-white bg-green-700 bg-opacity-75 rounded hover:bg-green-500" type="submit">Edit Profile</button>
                  

@@ -8,7 +8,9 @@ import { post } from "../services/authService"
 const Login = () => {
 
     const { authenticateUser } = useContext(AuthContext)
+    
     const { user, setUser, message } = useContext(LoadingContext)
+    
     const [ thisUser, setthisUser ] = useState(
         {
             email: "",
@@ -28,7 +30,7 @@ const Login = () => {
 
         post('/auth/login', thisUser)
             .then((results) => {
-                console.log("Created User", results.data)
+                console.log("LoggedIn User -->", results.data)
                 localStorage.setItem('authToken', results.data.token )
                 setUser(results.data)
                 navigate(`/profile/${results.data.foundUser._id}`)
