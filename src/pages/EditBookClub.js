@@ -7,6 +7,8 @@ import { post } from "../services/authService"
 function EditBookClubPage() {
    const {user, setUser, bookClub, setBookClub, getBookClubs, getBookClub, message} = useContext(LoadingContext)
 
+   const { file, setFile} = useState([])
+
    const { bookclubId, userId} = useParams()
    
    const navigate = useNavigate()
@@ -14,20 +16,42 @@ function EditBookClubPage() {
    const handleChange = (e) => {
       setBookClub((recent) => ({...recent, [e.target.name]: e.target.value}))
    }
-   
-   const handleSubmit = (e) =>{
-      e.preventDefault()
-      post(`/bookclubs/edit-bookclub/${bookclubId}/${userId}`, bookClub)
-      .then((results)=>{
-         console.log('results--->', results)
-         setBookClub(results.data)
-         navigate(`/bookclub-details/${bookclubId}`)
-      })
-      .catch((err) =>{
-         console.log(err)
-      }) 
+
+   const handleFile = (e) => {
+      setFile(e.target.files[0])
+  }
+
+  
+  const handleSubmit = (e) =>{
+     e.preventDefault()
+     handleUpload()
+     .then((response) =>{
+        post(`/bookclubs/edit-bookclub/${bookclubId}/${userId}`,  {...bookClub, clubImg: response })
+        .then((results)=>{
+           console.log('results--->', results)
+           setBookClub(results.data)
+           navigate(`/bookclub-details/${bookclubId}`)
+         })
+         .catch((err) =>{
+            console.log(err)
+         }) 
+     })
    }
 
+   
+   const handleUpload = async() => {
+    try {
+        const uploadData = new FormData()
+        uploadData.append('profileImage', file)
+        const response = await post('/auth/upload-photo', uploadData)
+        console.log(response)
+        return(response.data.url)
+    } catch (error) {
+        console.log(error)
+    }
+ }
+   
+   
    useEffect(() => {
       if (!bookClub) {
          getBookClub(bookclubId)
@@ -62,7 +86,7 @@ function EditBookClubPage() {
                   <label className="text-green-700 text-opacity-75">Book Club Image</label>
                   <input type='file' name="clubImg" 
                   // value={bookClub.clubImg} 
-                  onChange={handleChange} accept=".jpg, .jpeg, .png, .pdf" className="px-4 py-2 border border-green-700 border-opacity-50"></input>
+                  onChange={handleFile}  className="px-4 py-2 border border-green-700 border-opacity-50"></input>
 
                   <button className="px-4 py-2 my-4 mr-2 font-bold text-white bg-green-700 bg-opacity-75 rounded hover:bg-green-500" type="submit">Edit Book Club</button>
                  
