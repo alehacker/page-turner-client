@@ -31,7 +31,8 @@ function EditBookClubPage() {
         .then((results)=>{
            console.log('Edited Book Club--->', results.data)
            setBookClub(results.data)
-           navigate(`/bookclub-details/${bookclubId}`)
+           console.log ("EDITED BOOKCLUB", bookClub)
+           navigate(`/bookclub-details/${bookClub._id}`)
          })
          .catch((err) =>{
             console.log(err)
