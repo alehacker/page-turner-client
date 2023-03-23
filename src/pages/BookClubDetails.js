@@ -22,10 +22,10 @@ function BookClubDetails ({ title }) {
  
 
    useEffect(() => {
-      if (!bookClub) {
-         getBookClub(bookclubId)
+      if (!bookClub || bookClub._id !== bookclubId) {
+        getBookClub(bookclubId);
       }
-  }, [])
+    }, [bookClub, bookclubId]);
 
       console.log("This is the book club ===>", bookClub)
       
