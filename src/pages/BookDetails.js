@@ -29,9 +29,9 @@ const navigate = useNavigate()
 
 
 
- useEffect(() => {
-   getBookDetails(bookId)
- }, [])
+//  useEffect(() => {
+//    getBookDetails(bookId)
+//  }, [])
 
 
   return (
