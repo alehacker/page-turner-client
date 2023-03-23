@@ -7,7 +7,7 @@ import { post } from "../services/authService"
 function EditBookClubPage() {
    const {user, setUser, bookClub, setBookClub, getBookClubs, getBookClub, message} = useContext(LoadingContext)
 
-   const { file, setFile} = useState([])
+   const  [file, setFile] = useState([])
 
    const { bookclubId, userId} = useParams()
    
