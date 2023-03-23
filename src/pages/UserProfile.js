@@ -52,7 +52,7 @@ const UserProfile = () => {
                      {
                         user.bookClubs? user.bookClubs.map((club) => (
                            
-                              <li className="mb-2 text-green-700 text-opacity-75" key={club.id}>{club.name}</li>    
+                           <Link to={`/bookclub-details/${club._id}`} className="text-green-700 hover:text-green-500 focus:text-green-500" > <li className="mb-2 text-green-700 text-opacity-75" key={club.id}>{club.name}</li>  </Link>    
                            
                      )): <p className="mb-2">no book clubs yet</p>}
                   </ul>
