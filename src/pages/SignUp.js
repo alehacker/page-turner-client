@@ -33,16 +33,34 @@ const SignUp = () => {
       console.log("Changing user", newUser)
    }
 
+   // const handleSubmit = (e) => {
+   //    e.preventDefault()
+   //    handleUpload()
+   //    .then((response) => {
+   //       post('/auth/signup', newUser)
+   //    })
+   //    .then((results) => {
+   //       console.log("Created User", results.data)
+   //       navigate(`/profile/${results.data._id}`)
+   //       localStorage.setItem('authToken', results.data.token )
+   //       authenticateUser()
+   //    })
+   //    .catch((err) => {
+   //          console.log(err)
+   //    })    
+      
+   // } 
+
    const handleSubmit = (e) => {
       e.preventDefault()
       handleUpload()
       .then((response) => {
-         console.log('Line 40 -Response from HandleUpload ==>', response)
+         console.log('Line 58 -Response from HandleUpload ==>', response)
          post('/auth/signup',  {...newUser, profileImage: response})
       })
       .then((results) => {
-         console.log("Created User", results.data)
-         navigate('/login')
+         console.log("Created User", results)
+         navigate(`/profile/${results.data._id}`)
          localStorage.setItem('authToken', results.data.token )
          authenticateUser()
       })
@@ -112,63 +130,3 @@ const SignUp = () => {
 }
 
 export default SignUp
-
-//profile icon link on cloudinary
-// https://res.cloudinary.com/dlfkksswh/image/upload/v1678391981/profile-icon_nnli4g.jpg
-
-
-// The code below handles the change on images with Cloudinary
-// const handleFileUpload = (e) => {
-
-//    console.log("Uploading photo...")
-
-//      const uploadData = new FormData()
-//      uploadData.append('profileImage', e.target.files[0])
-//      console.log("Upload data" , uploadData, e.target.files)
-//      post('/users/new-profile-photo', uploadData)
-//        .then((result) => {
-//          setProfileImage(result.data.profileImage)
-//          console.log("This is photo", result.data)
-//        })
-//        .catch((err) => {
-//          console.log("Upload error", err)
-//        })
-//  }
-
-
-//  <label>
-//             Profile Picture:
-//             <input type="file" name="profileImage" 
-//             onChange={(e) => handleFileUpload(e)}
-//             // onChange={(e) => setProfileImage(e.target.value)}
-//              />
-//           </label>
-
-//  { isUploading ? (<p>Uploading photo...</p> ) 
-//  : ( */}
-///  onChange={(e) => handleFileUpload(e)} 
-
-// const handleFileUpload = (e) => {
-//    setIsUploading(true); // set isUploading to true
-//    console.log("Uploading photo...")
-//    const uploadData = new FormData()
-//    uploadData.append('profileImage', e.target.files[0])
-//    console.log("FILE LIST", e.target.files.length)
-//    if (e.target.files.length){
-//       post('/auth/new-profile-photo', uploadData)
-//         .then((result) => {
-//           setProfileImage(result.data.profileImage)
-//           console.log("This is photo", result.data)
-//         })
-//         .catch((err) => {
-//           console.log("Upload error", err)
-//         })
-//         .finally(() => {
-//           setIsUploading(false); // set isUploading to false after the upload is complete
-//         });
-//     }
-// }
-
-
-
-
