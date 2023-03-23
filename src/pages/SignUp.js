@@ -33,42 +33,21 @@ const SignUp = () => {
       console.log("Changing user", newUser)
    }
 
-   // const handleSubmit = (e) => {
-   //    e.preventDefault()
-   //    handleUpload()
-   //    .then((response) => {
-   //       post('/auth/signup', newUser)
-   //    })
-   //    .then((results) => {
-   //       console.log("Created User", results.data)
-   //       navigate(`/profile/${results.data._id}`)
-   //       localStorage.setItem('authToken', results.data.token )
-   //       authenticateUser()
-   //    })
-   //    .catch((err) => {
-   //          console.log(err)
-   //    })    
-      
-   // } 
 
-   const handleSubmit = (e) => {
-      e.preventDefault()
-      handleUpload()
-      .then((response) => {
-         console.log('Line 58 -Response from HandleUpload ==>', response)
-         post('/auth/signup',  {...newUser, profileImage: response})
-      })
-      .then((results) => {
-         console.log("Created User", results)
-         navigate(`/profile/${results.data._id}`)
-         localStorage.setItem('authToken', results.data.token )
-         authenticateUser()
-      })
-      .catch((err) => {
-            console.log(err)
-      })    
-      
-   } 
+   const handleSubmit = async (e) => {
+      try {
+        e.preventDefault();
+        const response = await handleUpload();
+        console.log('Line 58 -Response from HandleUpload ==>', response);
+        const results = await post('/auth/signup', {...newUser, profileImage: response});
+        console.log('Created User', results);
+        navigate(`/profile/${results.data._id}`);
+        localStorage.setItem('authToken', results.data.token);
+        authenticateUser();
+      } catch (err) {
+        console.log(err);
+      }
+   };
 
    const handleFile = (e) => {
       setFile(e.target.files[0])
