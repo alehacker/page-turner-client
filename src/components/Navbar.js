@@ -7,9 +7,12 @@ import { LoadingContext } from '../context/loadingContext';
 
 
 const Navbar = () => {
-   const { logout } = useContext(AuthContext)
+   const { logout} = useContext(AuthContext)
+   
 
-   const { user  } = useContext(LoadingContext) 
+   const { user, message, setTimedMessage } = useContext(LoadingContext) 
+   
+   setTimedMessage(message)
 
    
       let token = localStorage.getItem("authToken")

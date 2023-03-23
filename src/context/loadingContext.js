@@ -24,7 +24,7 @@ const LoadingProvider = ({ children }) => {
       setMessage(newMessage);
       setTimeout(() => {
          setMessage('')
-      }, 4000)
+      }, 2000)
    }
 
    //   *** getBooks gets all the books from the Google Books API  *** //

@@ -5,7 +5,9 @@ import BookClubList from "./BookClubList";
 import { LoadingContext } from "../context/loadingContext";
 
 const HomePage = () => {
-   const { message } = useContext(LoadingContext)
+   const { message, setTimedMessage } = useContext(LoadingContext)
+   setTimedMessage(message)
+   
    return (
       <div>
          <div className="flex flex-col items-center justify-center mt-10 md:flex-row">

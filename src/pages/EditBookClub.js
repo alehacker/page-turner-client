@@ -9,7 +9,7 @@ function EditBookClubPage() {
 
    const  [file, setFile] = useState([])
 
-   const { bookclubId, userId} = useParams()
+   const { bookclubId, userId } = useParams()
    
    const navigate = useNavigate()
 
